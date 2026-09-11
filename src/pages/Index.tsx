@@ -97,13 +97,11 @@ export default function Index() {
             </div>
 
             <h1 className="font-oswald text-5xl md:text-7xl lg:text-8xl text-white leading-none mb-6 animate-fade-in" style={{ animationDelay: '0.1s', opacity: 0 }}>
-              СТРОИМ
+              ТЕХНИКА
               <br />
-              <span className="text-brand-orange">БЫСТРО.</span>
+              <span className="text-brand-orange">МАТЕРИАЛЫ</span>
               <br />
-              ВЕЗЁМ
-              <br />
-              <span className="text-stroke text-white">ЧЁТКО.</span>
+              <span className="text-stroke text-white">ВЫВОЗ</span>
             </h1>
 
             <p className="text-brand-gray-light text-lg md:text-xl max-w-xl leading-relaxed mb-10 animate-fade-in" style={{ animationDelay: '0.2s', opacity: 0 }}>
