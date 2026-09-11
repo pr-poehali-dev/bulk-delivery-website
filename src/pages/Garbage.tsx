@@ -51,7 +51,7 @@ export default function Garbage() {
             Контейнеры 8–27 м³. Строительный мусор, демонтаж, крупногабарит. Официальная утилизация, документы.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="tel:+78001234567" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
+            <a href="tel:+79953985420" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
               <Icon name="Phone" size={20} />
               Заказать контейнер
             </a>
@@ -94,7 +94,7 @@ export default function Garbage() {
                 <div className={`text-sm mb-4 font-golos ${i === 2 ? "text-white/60" : "text-brand-gray-mid"}`}>до {c.weight}</div>
                 <p className={`text-sm leading-relaxed mb-6 flex-1 ${i === 2 ? "text-white/70" : "text-brand-gray-mid"}`}>{c.desc}</p>
                 <div className={`font-oswald text-2xl mb-4 ${i === 2 ? "text-white" : "text-brand-orange"}`}>{c.price}</div>
-                <a href="tel:+78001234567" className={`block text-center py-3 font-oswald text-sm tracking-wider uppercase transition-colors ${i === 2 ? "bg-brand-orange text-white hover:bg-brand-orange-dark" : "border border-brand-black text-brand-black hover:bg-brand-black hover:text-white"}`}>
+                <a href="tel:+79953985420" className={`block text-center py-3 font-oswald text-sm tracking-wider uppercase transition-colors ${i === 2 ? "bg-brand-orange text-white hover:bg-brand-orange-dark" : "border border-brand-black text-brand-black hover:bg-brand-black hover:text-white"}`}>
                   Заказать
                 </a>
               </div>
@@ -131,7 +131,7 @@ export default function Garbage() {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="font-oswald text-4xl md:text-6xl text-white uppercase mb-6">Очистим объект<br /><span className="text-brand-orange">за один день</span></h2>
           <p className="text-brand-gray-light text-lg mb-10 max-w-xl mx-auto">Доставим контейнер сегодня. Заберём — когда скажете.</p>
-          <a href="tel:+78001234567" className="inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-10 py-4 font-oswald text-xl tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
+          <a href="tel:+79953985420" className="inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-10 py-4 font-oswald text-xl tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
             <Icon name="Phone" size={22} />
             Заказать вывоз мусора
           </a>

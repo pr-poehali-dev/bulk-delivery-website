@@ -3,13 +3,31 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
 
+const SEND_LEAD_URL = "https://functions.poehali.dev/c38f5417-f5e4-4d04-9048-d751bc55b060";
+
 export default function Contacts() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", phone: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch(SEND_LEAD_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, source: "Страница Контакты" }),
+      });
+      if (!res.ok) throw new Error();
+      setSent(true);
+    } catch {
+      setError("Не удалось отправить заявку. Позвоните нам: +7 (995) 398-54-20");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -71,11 +89,15 @@ export default function Contacts() {
                       className="w-full border border-brand-black/20 px-4 py-3 font-golos text-brand-black focus:outline-none focus:border-brand-orange transition-colors resize-none"
                     />
                   </div>
+                  {error && (
+                    <p className="text-red-600 text-sm text-center">{error}</p>
+                  )}
                   <button
                     type="submit"
-                    className="w-full bg-brand-orange text-white py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors"
+                    disabled={loading}
+                    className="w-full bg-brand-orange text-white py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Отправить заявку
+                    {loading ? "Отправляем..." : "Отправить заявку"}
                   </button>
                   <p className="text-brand-gray-light text-xs text-center">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
                 </form>
@@ -99,22 +121,22 @@ export default function Contacts() {
                 {
                   icon: "Phone",
                   title: "Телефон (24/7)",
-                  lines: ["+7 (800) 123-45-67 (бесплатно)", "+7 (495) 987-65-43"],
+                  lines: ["+7 (995) 398-54-20"],
                 },
                 {
                   icon: "Mail",
                   title: "Email",
-                  lines: ["info@gruzovic.ru", "zakaz@gruzovic.ru"],
+                  lines: ["info@rostovtehrezerv.ru"],
                 },
                 {
                   icon: "MapPin",
-                  title: "Офис",
-                  lines: ["г. Москва, ул. Промышленная, 14", "ПН-ПТ: 8:00–20:00, СБ: 9:00–17:00"],
+                  title: "База",
+                  lines: ["г. Ростов-на-Дону, ул. Юго-Восточная промзона, 17/1", "ПН-ПТ: 8:00–20:00, СБ: 9:00–17:00"],
                 },
                 {
                   icon: "Warehouse",
                   title: "Диспетчерская",
-                  lines: ["Принимает заявки 24/7", "+7 (800) 123-45-67 доб. 1"],
+                  lines: ["Принимает заявки 24/7", "+7 (995) 398-54-20"],
                 },
               ].map((c) => (
                 <div key={c.title} className="flex items-start gap-4 p-6 bg-white border border-brand-black/10 hover:border-brand-orange transition-colors group">
@@ -132,22 +154,16 @@ export default function Contacts() {
             </div>
           </div>
 
-          {/* Map placeholder */}
-          <div className="mt-12 bg-brand-black/10 h-80 flex items-center justify-center border border-brand-black/10 relative overflow-hidden">
-            <div className="text-center">
-              <Icon name="Map" size={48} className="text-brand-orange mx-auto mb-4" />
-              <h3 className="font-oswald text-2xl text-brand-black uppercase">Карта</h3>
-              <p className="text-brand-gray-mid text-sm mt-2">г. Москва, ул. Промышленная, 14</p>
-              <a
-                href="https://yandex.ru/maps"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-brand-orange text-white px-6 py-3 font-oswald text-sm tracking-wider uppercase mt-4 hover:bg-brand-orange-dark transition-colors"
-              >
-                <Icon name="ExternalLink" size={16} />
-                Открыть на Яндекс Картах
-              </a>
-            </div>
+          {/* Map */}
+          <div className="mt-12 border border-brand-black/10 relative overflow-hidden">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?text=Ростов-на-Дону%2C%20улица%20Юго-Восточная%20промзона%2C%2017%2F1&z=15"
+              width="100%"
+              height="400"
+              frameBorder="0"
+              title="Карта базы РостовТехРезерв"
+              className="w-full h-[400px] grayscale-[20%]"
+            />
           </div>
         </div>
       </section>

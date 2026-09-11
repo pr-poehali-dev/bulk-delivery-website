@@ -63,7 +63,7 @@ const equipment = [
 
 const conditions = [
   { icon: "Clock", title: "Минимальный заказ", desc: "4 часа (с учётом подачи техники)" },
-  { icon: "MapPin", title: "Зона работы", desc: "Москва и Московская область, до 150 км от МКАД" },
+  { icon: "MapPin", title: "Зона работы", desc: "Ростов-на-Дону и область, до 150 км от города" },
   { icon: "FileText", title: "Документы", desc: "Договор, акт выполненных работ, счёт-фактура" },
   { icon: "CreditCard", title: "Оплата", desc: "Наличные, карта, безналичный расчёт" },
   { icon: "Wrench", title: "Техника", desc: "Весь парк — собственный, регулярное ТО" },
@@ -96,7 +96,7 @@ export default function Equipment() {
             Более 80 единиц техники в собственном парке. Экскаваторы, бульдозеры, краны, погрузчики — подача в течение 2–4 часов.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="tel:+78001234567" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
+            <a href="tel:+79953985420" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
               <Icon name="Phone" size={20} />
               Заказать технику
             </a>
@@ -167,9 +167,9 @@ export default function Equipment() {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="font-oswald text-4xl md:text-6xl text-brand-black uppercase mb-6">Нужна конкретная техника?</h2>
           <p className="text-brand-gray-mid text-lg mb-10 max-w-xl mx-auto">Позвоните нам — подберём оптимальный вариант под вашу задачу и бюджет</p>
-          <a href="tel:+78001234567" className="inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-10 py-4 font-oswald text-xl tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
+          <a href="tel:+79953985420" className="inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-10 py-4 font-oswald text-xl tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
             <Icon name="Phone" size={22} />
-            +7 (800) 123-45-67
+            +7 (995) 398-54-20
           </a>
         </div>
       </section>

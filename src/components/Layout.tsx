@@ -43,13 +43,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="max-w-7xl mx-auto px-6 py-1.5 flex justify-between items-center">
             <span className="text-white text-sm font-golos">Работаем 24/7 без выходных</span>
             <div className="flex items-center gap-6">
-              <a href="tel:+78001234567" className="text-white text-sm font-bold hover:text-brand-black transition-colors flex items-center gap-1.5">
+              <a href="tel:+79953985420" className="text-white text-sm font-bold hover:text-brand-black transition-colors flex items-center gap-1.5">
                 <Icon name="Phone" size={14} />
-                +7 (800) 123-45-67
+                +7 (995) 398-54-20
               </a>
-              <a href="mailto:info@gruzovic.ru" className="text-white text-sm hover:text-brand-black transition-colors flex items-center gap-1.5">
+              <a href="mailto:info@rostovtehrezerv.ru" className="text-white text-sm hover:text-brand-black transition-colors flex items-center gap-1.5">
                 <Icon name="Mail" size={14} />
-                info@gruzovic.ru
+                info@rostovtehrezerv.ru
               </a>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Icon name="Truck" size={22} className="text-white" />
             </div>
             <div>
-              <div className="text-white font-oswald text-xl tracking-widest uppercase leading-tight">ГРУЗОВИК</div>
+              <div className="text-white font-oswald text-xl tracking-widest uppercase leading-tight">РостовТехРезерв</div>
               <div className="text-brand-gray-light text-[10px] tracking-[0.2em] uppercase">Строительная логистика</div>
             </div>
           </Link>
@@ -89,7 +89,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="flex items-center gap-3">
             <a
-              href="tel:+78001234567"
+              href="tel:+79953985420"
               className="hidden lg:flex items-center gap-2 bg-brand-orange text-white px-4 py-2.5 font-oswald text-sm tracking-wider uppercase hover:bg-brand-orange-dark transition-colors"
             >
               <Icon name="Phone" size={16} />
@@ -124,11 +124,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ))}
               <div className="px-6 py-4">
                 <a
-                  href="tel:+78001234567"
+                  href="tel:+79953985420"
                   className="flex items-center justify-center gap-2 bg-brand-orange text-white w-full py-3 font-oswald tracking-wider uppercase"
                 >
                   <Icon name="Phone" size={16} />
-                  +7 (800) 123-45-67
+                  +7 (995) 398-54-20
                 </a>
               </div>
             </nav>
@@ -152,12 +152,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Icon name="Truck" size={22} className="text-white" />
                 </div>
                 <div>
-                  <div className="text-white font-oswald text-xl tracking-widest uppercase">ГРУЗОВИК</div>
+                  <div className="text-white font-oswald text-xl tracking-widest uppercase">РостовТехРезерв</div>
                   <div className="text-brand-gray-light text-[10px] tracking-[0.2em] uppercase">Строительная логистика</div>
                 </div>
               </Link>
               <p className="text-brand-gray-light text-sm leading-relaxed">
-                Профессиональная доставка сыпучих материалов, аренда спецтехники и вывоз мусора по всему региону.
+                Профессиональная доставка сыпучих материалов, аренда спецтехники и вывоз мусора по Ростову-на-Дону и области.
               </p>
             </div>
 
@@ -206,25 +206,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <li className="flex items-start gap-3">
                   <Icon name="Phone" size={16} className="text-brand-orange mt-0.5 shrink-0" />
                   <div>
-                    <a href="tel:+78001234567" className="text-white font-bold hover:text-brand-orange transition-colors block">+7 (800) 123-45-67</a>
+                    <a href="tel:+79953985420" className="text-white font-bold hover:text-brand-orange transition-colors block">+7 (995) 398-54-20</a>
                     <span className="text-brand-gray-light text-xs">Бесплатно, 24/7</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <Icon name="Mail" size={16} className="text-brand-orange mt-0.5 shrink-0" />
-                  <a href="mailto:info@gruzovic.ru" className="text-brand-gray-light text-sm hover:text-brand-orange transition-colors">info@gruzovic.ru</a>
+                  <a href="mailto:info@rostovtehrezerv.ru" className="text-brand-gray-light text-sm hover:text-brand-orange transition-colors">info@rostovtehrezerv.ru</a>
                 </li>
                 <li className="flex items-start gap-3">
                   <Icon name="MapPin" size={16} className="text-brand-orange mt-0.5 shrink-0" />
-                  <span className="text-brand-gray-light text-sm">г. Москва, ул. Промышленная, 14</span>
+                  <span className="text-brand-gray-light text-sm">г. Ростов-на-Дону, ул. Юго-Восточная промзона, 17/1</span>
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-brand-gray/30 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-brand-gray-light text-sm">© 2024 ГРУЗОВИК. Все права защищены.</p>
-            <p className="text-brand-gray-light text-xs">ИНН 7700000000 | ООО «Грузовик»</p>
+            <p className="text-brand-gray-light text-sm">© 2024 РостовТехРезерв. Все права защищены.</p>
+            <p className="text-brand-gray-light text-xs">ИНН 6100000000 | ООО «РостовТехРезерв»</p>
           </div>
         </div>
       </footer>

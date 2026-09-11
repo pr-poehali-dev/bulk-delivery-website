@@ -91,14 +91,14 @@ export default function Delivery() {
             ДОСТАВКА<br /><span className="text-brand-orange">МАТЕРИАЛОВ</span>
           </h1>
           <p className="text-brand-gray-light text-xl max-w-2xl leading-relaxed mb-10">
-            Щебень, песок, торф, грунт — доставим любой объём в день заказа по Москве и области. Работаем с 6:00 до 23:00 ежедневно.
+            Щебень, песок, торф, грунт — доставим любой объём в день заказа по Ростову-на-Дону и области. Работаем с 6:00 до 23:00 ежедневно.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link to="/calculator" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
               <Icon name="Calculator" size={20} />
               Рассчитать стоимость
             </Link>
-            <a href="tel:+78001234567" className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-white hover:text-brand-black transition-all">
+            <a href="tel:+79953985420" className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-white hover:text-brand-black transition-all">
               <Icon name="Phone" size={20} />
               Заказать доставку
             </a>
@@ -162,9 +162,9 @@ export default function Delivery() {
               <Icon name="Calculator" size={20} />
               Калькулятор стоимости
             </Link>
-            <a href="tel:+78001234567" className="inline-flex items-center justify-center gap-3 border-2 border-brand-black text-brand-black px-10 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-black hover:text-white transition-all">
+            <a href="tel:+79953985420" className="inline-flex items-center justify-center gap-3 border-2 border-brand-black text-brand-black px-10 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-black hover:text-white transition-all">
               <Icon name="Phone" size={20} />
-              +7 (800) 123-45-67
+              +7 (995) 398-54-20
             </a>
           </div>
         </div>

@@ -47,6 +47,9 @@ export default function Calculator() {
   const [container, setContainer] = useState(containerOptions[0].id);
   const [distance, setDistance] = useState(20);
   const [orderSent, setOrderSent] = useState(false);
+  const [orderPhone, setOrderPhone] = useState("");
+  const [orderLoading, setOrderLoading] = useState(false);
+  const [orderError, setOrderError] = useState("");
 
   const calcDelivery = () => {
     const mat = materialOptions.find((m) => m.id === material);
@@ -72,6 +75,36 @@ export default function Calculator() {
       : service === "equipment"
         ? calcEquipment()
         : calcGarbage();
+
+  const serviceLabel =
+    service === "delivery" ? "Доставка материалов" : service === "equipment" ? "Аренда спецтехники" : "Вывоз мусора";
+
+  const handleOrder = async () => {
+    if (!orderPhone.trim()) {
+      setOrderError("Укажите телефон для связи");
+      return;
+    }
+    setOrderError("");
+    setOrderLoading(true);
+    try {
+      const res = await fetch("https://functions.poehali.dev/c38f5417-f5e4-4d04-9048-d751bc55b060", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Клиент из калькулятора",
+          phone: orderPhone,
+          message: `Услуга: ${serviceLabel}. Расчётная стоимость: ${total.toLocaleString()} ₽`,
+          source: "Калькулятор стоимости",
+        }),
+      });
+      if (!res.ok) throw new Error();
+      setOrderSent(true);
+    } catch {
+      setOrderError("Не удалось отправить. Позвоните нам: +7 (995) 398-54-20");
+    } finally {
+      setOrderLoading(false);
+    }
+  };
 
   return (
     <Layout>
@@ -225,7 +258,7 @@ export default function Calculator() {
 
             {/* Distance */}
             <div className="mb-10">
-              <h2 className="font-oswald text-2xl text-brand-black uppercase mb-5">3. Расстояние от МКАД</h2>
+              <h2 className="font-oswald text-2xl text-brand-black uppercase mb-5">3. Расстояние от города</h2>
               <label className="block font-oswald text-sm tracking-widest uppercase text-brand-black mb-3">
                 Удалённость: <span className="text-brand-orange">{distance} км</span>
                 {distance > 30 && <span className="text-brand-gray-mid text-xs ml-2">(+{distanceSurcharge(distance).toLocaleString()} ₽)</span>}
@@ -236,10 +269,10 @@ export default function Calculator() {
                 className="w-full accent-brand-orange"
               />
               <div className="flex justify-between text-xs text-brand-gray-mid mt-1">
-                <span>В пределах МКАД</span><span>150 км</span>
+                <span>В черте города</span><span>150 км</span>
               </div>
               {distance <= 30 && (
-                <div className="mt-2 text-xs text-green-600 font-golos">✓ Бесплатная доставка в пределах 30 км от МКАД</div>
+                <div className="mt-2 text-xs text-green-600 font-golos">✓ Бесплатная доставка в пределах 30 км от города</div>
               )}
             </div>
 
@@ -254,19 +287,30 @@ export default function Calculator() {
               </div>
               <div className="flex flex-col gap-3 w-full md:w-auto">
                 {!orderSent ? (
-                  <button
-                    onClick={() => setOrderSent(true)}
-                    className="bg-brand-orange text-white px-10 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors whitespace-nowrap"
-                  >
-                    Оформить заказ
-                  </button>
+                  <>
+                    <input
+                      type="tel"
+                      placeholder="Ваш телефон"
+                      value={orderPhone}
+                      onChange={(e) => setOrderPhone(e.target.value)}
+                      className="bg-white/10 border border-white/30 text-white placeholder:text-white/40 px-4 py-3 font-golos focus:outline-none focus:border-brand-orange transition-colors w-full md:w-64"
+                    />
+                    {orderError && <p className="text-red-400 text-xs">{orderError}</p>}
+                    <button
+                      onClick={handleOrder}
+                      disabled={orderLoading}
+                      className="bg-brand-orange text-white px-10 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {orderLoading ? "Отправляем..." : "Оформить заказ"}
+                    </button>
+                  </>
                 ) : (
                   <div className="bg-green-600 text-white px-10 py-4 font-oswald text-sm tracking-wider uppercase text-center">
                     ✓ Заявка принята! Перезвоним.
                   </div>
                 )}
-                <a href="tel:+78001234567" className="border border-white/30 text-white px-10 py-4 font-oswald text-sm tracking-wider uppercase text-center hover:bg-white/10 transition-colors whitespace-nowrap">
-                  Позвонить: +7 (800) 123-45-67
+                <a href="tel:+79953985420" className="border border-white/30 text-white px-10 py-4 font-oswald text-sm tracking-wider uppercase text-center hover:bg-white/10 transition-colors whitespace-nowrap">
+                  Позвонить: +7 (995) 398-54-20
                 </a>
               </div>
             </div>

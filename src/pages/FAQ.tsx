@@ -43,8 +43,8 @@ const faqCategories = [
         a: "Мы заменим технику в течение 1–2 часов. Время простоя не тарифицируется. Все случаи поломок крайне редки — парк проходит ТО каждые 150 часов.",
       },
       {
-        q: "До какого расстояния от МКАД работаете?",
-        a: "Работаем в Москве и Московской области, до 150 км от МКАД. Выезд за пределы 30 км рассчитывается индивидуально.",
+        q: "До какого расстояния от Ростова-на-Дону работаете?",
+        a: "Работаем в Ростове-на-Дону и Ростовской области, до 150 км от города. Выезд за пределы 30 км рассчитывается индивидуально.",
       },
     ],
   },
@@ -161,7 +161,7 @@ export default function FAQ() {
             <h3 className="font-oswald text-3xl text-white uppercase mb-4">Не нашли ответа?</h3>
             <p className="text-brand-gray-light mb-8">Позвоните нам — ответим на любой вопрос за 2 минуты</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+78001234567" className="inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
+              <a href="tel:+79953985420" className="inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
                 <Icon name="Phone" size={20} />
                 Позвонить
               </a>

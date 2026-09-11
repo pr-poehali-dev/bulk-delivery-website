@@ -142,7 +142,7 @@ export default function Blog() {
               <Icon name="HelpCircle" size={20} />
               Вопросы и ответы
             </Link>
-            <a href="tel:+78001234567" className="inline-flex items-center justify-center gap-3 border border-white text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-white hover:text-brand-black transition-all">
+            <a href="tel:+79953985420" className="inline-flex items-center justify-center gap-3 border border-white text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-white hover:text-brand-black transition-all">
               <Icon name="Phone" size={20} />
               Позвонить нам
             </a>

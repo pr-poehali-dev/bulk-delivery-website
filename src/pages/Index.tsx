@@ -119,7 +119,7 @@ export default function Index() {
                 Рассчитать стоимость
               </Link>
               <a
-                href="tel:+78001234567"
+                href="tel:+79953985420"
                 className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-white hover:text-brand-black transition-all"
               >
                 <Icon name="Phone" size={20} />
@@ -341,11 +341,11 @@ export default function Index() {
               Оставить заявку
             </Link>
             <a
-              href="tel:+78001234567"
+              href="tel:+79953985420"
               className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-10 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-white hover:text-brand-orange transition-all"
             >
               <Icon name="Phone" size={20} />
-              +7 (800) 123-45-67
+              +7 (995) 398-54-20
             </a>
           </div>
         </div>
