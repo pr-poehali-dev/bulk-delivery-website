@@ -12,6 +12,9 @@ import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import Blog from "./pages/Blog";
 import FAQ from "./pages/FAQ";
+import MaterialDetail from "./pages/MaterialDetail";
+import EquipmentDetail from "./pages/EquipmentDetail";
+import ContainerDetail from "./pages/ContainerDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,8 +28,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/delivery" element={<Delivery />} />
+          <Route path="/delivery/:slug" element={<MaterialDetail />} />
           <Route path="/equipment" element={<Equipment />} />
+          <Route path="/equipment/:slug" element={<EquipmentDetail />} />
           <Route path="/garbage" element={<Garbage />} />
+          <Route path="/garbage/:slug" element={<ContainerDetail />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/about" element={<About />} />
           <Route path="/contacts" element={<Contacts />} />

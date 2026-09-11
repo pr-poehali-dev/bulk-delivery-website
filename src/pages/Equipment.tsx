@@ -1,65 +1,8 @@
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
-
-const equipment = [
-  {
-    name: "Экскаватор гусеничный",
-    capacity: "0.3–1.5 м³",
-    price: "от 3 500 ₽/час",
-    icon: "Shovel",
-    uses: ["Земляные работы", "Рытьё котлованов", "Демонтаж"],
-  },
-  {
-    name: "Экскаватор колёсный",
-    capacity: "0.3–0.8 м³",
-    price: "от 3 000 ₽/час",
-    icon: "Shovel",
-    uses: ["Городские работы", "Прокладка коммуникаций", "Озеленение"],
-  },
-  {
-    name: "Бульдозер",
-    capacity: "до 15 т",
-    price: "от 4 000 ₽/час",
-    icon: "Tractor",
-    uses: ["Планировка территории", "Рекультивация", "Отсыпка"],
-  },
-  {
-    name: "Автокран",
-    capacity: "16–50 т",
-    price: "от 4 500 ₽/час",
-    icon: "ArrowUpCircle",
-    uses: ["Монтаж конструкций", "Подъём грузов", "Строительство"],
-  },
-  {
-    name: "Погрузчик фронтальный",
-    capacity: "1–3 м³",
-    price: "от 2 800 ₽/час",
-    icon: "Forklift",
-    uses: ["Погрузка материалов", "Перемещение грузов", "Склады"],
-  },
-  {
-    name: "Самосвал 10–20 т",
-    capacity: "10–20 т",
-    price: "от 2 500 ₽/час",
-    icon: "Truck",
-    uses: ["Вывоз грунта", "Доставка щебня", "Земляные работы"],
-  },
-  {
-    name: "Грейдер",
-    capacity: "до 200 кВт",
-    price: "от 5 000 ₽/час",
-    icon: "Minus",
-    uses: ["Грейдирование дорог", "Планировка", "Снег"],
-  },
-  {
-    name: "Виброкаток",
-    capacity: "8–20 т",
-    price: "от 3 200 ₽/час",
-    icon: "Circle",
-    uses: ["Уплотнение грунта", "Дорожные работы", "Площадки"],
-  },
-];
+import { equipmentItems } from "@/data/equipmentItems";
+import { useSeo } from "@/hooks/useSeo";
 
 const conditions = [
   { icon: "Clock", title: "Минимальный заказ", desc: "4 часа (с учётом подачи техники)" },
@@ -71,6 +14,13 @@ const conditions = [
 ];
 
 export default function Equipment() {
+  useSeo({
+    title: "Аренда спецтехники в Ростове-на-Дону — экскаваторы, краны, самосвалы | РостовТехРезерв",
+    description:
+      "Аренда спецтехники с оператором в Ростове-на-Дону, Аксае и Батайске. Экскаваторы, бульдозеры, автокраны, погрузчики, самосвалы. Подача 2–4 часа, цены от 2 500 ₽/час.",
+    keywords: "аренда спецтехники ростов-на-дону, экскаватор кран самосвал аренда",
+  });
+
   return (
     <Layout>
       {/* Hero */}
@@ -117,23 +67,23 @@ export default function Equipment() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {equipment.map((eq) => (
-              <div key={eq.name} className="border border-brand-black/10 p-6 hover:border-brand-orange hover:shadow-xl transition-all group">
+            {equipmentItems.map((eq) => (
+              <Link
+                key={eq.slug}
+                to={`/equipment/${eq.slug}`}
+                className="border border-brand-black/10 p-6 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col"
+              >
                 <div className="w-14 h-14 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center mb-5">
                   <Icon name={eq.icon as any} size={24} className="text-white" />
                 </div>
                 <h3 className="font-oswald text-xl text-brand-black uppercase mb-1 leading-tight">{eq.name}</h3>
                 <div className="text-brand-gray-mid text-xs mb-4 font-golos">Объём: {eq.capacity}</div>
-                <ul className="space-y-1 mb-5">
-                  {eq.uses.map((u) => (
-                    <li key={u} className="flex items-center gap-2 text-xs text-brand-gray-mid">
-                      <span className="w-1.5 h-1.5 bg-brand-orange rounded-full" />
-                      {u}
-                    </li>
-                  ))}
-                </ul>
-                <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4">{eq.price}</div>
-              </div>
+                <p className="text-xs text-brand-gray-mid mb-5 flex-1">{eq.shortDesc}</p>
+                <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4 flex items-center justify-between">
+                  {eq.price}/ч
+                  <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>

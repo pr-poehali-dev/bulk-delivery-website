@@ -1,13 +1,8 @@
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
-
-const containers = [
-  { volume: "8 м³", weight: "до 5 т", type: "Малый", price: "от 6 500 ₽", desc: "Для небольших ремонтов и квартирных переездов" },
-  { volume: "15 м³", weight: "до 8 т", type: "Средний", price: "от 9 000 ₽", desc: "Оптимален для загородных участков" },
-  { volume: "20 м³", weight: "до 12 т", type: "Большой", price: "от 11 500 ₽", desc: "Для крупных ремонтов и строительства" },
-  { volume: "27 м³", weight: "до 15 т", type: "Макси", price: "от 14 000 ₽", desc: "Промышленные объёмы и снос зданий" },
-];
+import { containers } from "@/data/containers";
+import { useSeo } from "@/hooks/useSeo";
 
 const wasteTypes = [
   { icon: "HardHat", name: "Строительный мусор", desc: "Бетон, кирпич, штукатурка, плитка" },
@@ -26,6 +21,13 @@ const steps = [
 ];
 
 export default function Garbage() {
+  useSeo({
+    title: "Вывоз мусора контейнерами в Ростове-на-Дону — от 6 500 ₽ | РостовТехРезерв",
+    description:
+      "Вывоз строительного и крупногабаритного мусора контейнерами 8–27 м³ в Ростове-на-Дону, Аксае и Батайске. Официальная утилизация, документы. Подача в день заказа.",
+    keywords: "вывоз мусора ростов-на-дону, заказать контейнер для мусора, вывоз строительного мусора",
+  });
+
   return (
     <Layout>
       {/* Hero */}
@@ -88,16 +90,20 @@ export default function Garbage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {containers.map((c, i) => (
-              <div key={c.volume} className={`p-8 flex flex-col hover-lift ${i === 2 ? "bg-brand-black text-white" : "border border-brand-black/15 bg-white"}`}>
+              <Link
+                to={`/garbage/${c.slug}`}
+                key={c.slug}
+                className={`p-8 flex flex-col hover-lift ${i === 2 ? "bg-brand-black text-white" : "border border-brand-black/15 bg-white"}`}
+              >
                 <div className={`text-xs font-oswald tracking-[0.2em] uppercase mb-3 ${i === 2 ? "text-brand-orange" : "text-brand-gray-mid"}`}>{c.type}</div>
                 <div className={`font-oswald text-5xl mb-1 ${i === 2 ? "text-brand-orange" : "text-brand-black"}`}>{c.volume}</div>
                 <div className={`text-sm mb-4 font-golos ${i === 2 ? "text-white/60" : "text-brand-gray-mid"}`}>до {c.weight}</div>
-                <p className={`text-sm leading-relaxed mb-6 flex-1 ${i === 2 ? "text-white/70" : "text-brand-gray-mid"}`}>{c.desc}</p>
+                <p className={`text-sm leading-relaxed mb-6 flex-1 ${i === 2 ? "text-white/70" : "text-brand-gray-mid"}`}>{c.shortDesc}</p>
                 <div className={`font-oswald text-2xl mb-4 ${i === 2 ? "text-white" : "text-brand-orange"}`}>{c.price}</div>
-                <a href="tel:+79953985420" className={`block text-center py-3 font-oswald text-sm tracking-wider uppercase transition-colors ${i === 2 ? "bg-brand-orange text-white hover:bg-brand-orange-dark" : "border border-brand-black text-brand-black hover:bg-brand-black hover:text-white"}`}>
-                  Заказать
-                </a>
-              </div>
+                <span className={`block text-center py-3 font-oswald text-sm tracking-wider uppercase transition-colors ${i === 2 ? "bg-brand-orange text-white group-hover:bg-brand-orange-dark" : "border border-brand-black text-brand-black hover:bg-brand-black hover:text-white"}`}>
+                  Подробнее
+                </span>
+              </Link>
             ))}
           </div>
         </div>

@@ -1,65 +1,8 @@
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
-
-const materials = [
-  {
-    name: "Щебень",
-    desc: "Фракции 5-20, 20-40, 40-70 мм. Гранитный, известняковый, вторичный.",
-    icon: "Mountain",
-    price: "от 1 200 ₽/т",
-    features: ["Подходит для фундамента", "Дренажные системы", "Дорожные работы"],
-  },
-  {
-    name: "Песок",
-    desc: "Речной, карьерный, мытый. Для строительства и благоустройства.",
-    icon: "Waves",
-    price: "от 900 ₽/т",
-    features: ["Кладочные работы", "Отсыпка участка", "Детские площадки"],
-  },
-  {
-    name: "Торф",
-    desc: "Верховой и низинный торф. Идеален для улучшения почвы.",
-    icon: "Leaf",
-    price: "от 800 ₽/т",
-    features: ["Огородные грядки", "Газоны", "Теплицы"],
-  },
-  {
-    name: "Керамзит",
-    desc: "Фракции 5-10, 10-20 мм. Лёгкий и тёплый утеплитель.",
-    icon: "Circle",
-    price: "от 1 500 ₽/т",
-    features: ["Утепление полов", "Дренаж", "Садовые дорожки"],
-  },
-  {
-    name: "Плодородный грунт",
-    desc: "Чистый, без камней и мусора. Для посева и высадки растений.",
-    icon: "Sprout",
-    price: "от 700 ₽/т",
-    features: ["Огороды", "Газоны", "Клумбы"],
-  },
-  {
-    name: "ПГС (смесь)",
-    desc: "Песчано-гравийная смесь. Универсальна для строительных работ.",
-    icon: "Layers",
-    price: "от 850 ₽/т",
-    features: ["Основания дорог", "Фундаменты", "Отсыпка"],
-  },
-  {
-    name: "Чернозём",
-    desc: "Высококачественный чернозём с высоким содержанием гумуса.",
-    icon: "TreePine",
-    price: "от 1 100 ₽/т",
-    features: ["Грядки", "Газоны", "Озеленение"],
-  },
-  {
-    name: "Гравий",
-    desc: "Природный гравий различных фракций. Для декора и строительства.",
-    icon: "Gem",
-    price: "от 1 050 ₽/т",
-    features: ["Отсыпка дорожек", "Дренаж", "Декоративные цели"],
-  },
-];
+import { materials } from "@/data/materials";
+import { useSeo } from "@/hooks/useSeo";
 
 const howWorks = [
   { step: "01", title: "Оставьте заявку", desc: "Позвоните или заполните форму на сайте" },
@@ -69,6 +12,13 @@ const howWorks = [
 ];
 
 export default function Delivery() {
+  useSeo({
+    title: "Доставка сыпучих материалов в Ростове-на-Дону — щебень, песок, грунт | РостовТехРезерв",
+    description:
+      "Доставка щебня, песка, торфа, керамзита, грунта и других сыпучих материалов в Ростове-на-Дону, Аксае и Батайске в день заказа. Собственный автопарк, цены от 700 ₽/т.",
+    keywords: "доставка сыпучих материалов ростов-на-дону, купить щебень песок грунт",
+  });
+
   return (
     <Layout>
       {/* Hero */}
@@ -131,22 +81,21 @@ export default function Delivery() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {materials.map((mat) => (
-              <div key={mat.name} className="border border-brand-black/10 p-6 hover:border-brand-orange hover:shadow-xl transition-all group">
+              <Link
+                key={mat.slug}
+                to={`/delivery/${mat.slug}`}
+                className="border border-brand-black/10 p-6 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col"
+              >
                 <div className="w-14 h-14 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center mb-5">
                   <Icon name={mat.icon as any} size={24} className="text-white" />
                 </div>
                 <h3 className="font-oswald text-2xl text-brand-black uppercase mb-2">{mat.name}</h3>
-                <p className="text-brand-gray-mid text-sm mb-4 leading-relaxed">{mat.desc}</p>
-                <ul className="space-y-1 mb-5">
-                  {mat.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-xs text-brand-gray-mid">
-                      <span className="w-1.5 h-1.5 bg-brand-orange rounded-full" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4">{mat.price}</div>
-              </div>
+                <p className="text-brand-gray-mid text-sm mb-4 leading-relaxed flex-1">{mat.shortDesc}</p>
+                <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4 flex items-center justify-between">
+                  {mat.price}/т
+                  <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
