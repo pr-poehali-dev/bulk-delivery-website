@@ -91,7 +91,7 @@ export default function Delivery() {
             ДОСТАВКА<br /><span className="text-brand-orange">МАТЕРИАЛОВ</span>
           </h1>
           <p className="text-brand-gray-light text-xl max-w-2xl leading-relaxed mb-10">
-            Щебень, песок, торф, грунт — доставим любой объём в день заказа по Ростову-на-Дону и области. Работаем с 6:00 до 23:00 ежедневно.
+            Щебень, песок, торф, грунт — доставим любой объём в день заказа по Ростову-на-Дону, Аксаю и Батайску. Работаем с 6:00 до 23:00 ежедневно.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link to="/calculator" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">

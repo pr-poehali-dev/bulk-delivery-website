@@ -157,7 +157,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
               </Link>
               <p className="text-brand-gray-light text-sm leading-relaxed">
-                Профессиональная доставка сыпучих материалов, аренда спецтехники и вывоз мусора по Ростову-на-Дону и области.
+                Профессиональная доставка сыпучих материалов, аренда спецтехники и вывоз мусора в Ростове-на-Дону, Аксае и Батайске.
               </p>
             </div>
 

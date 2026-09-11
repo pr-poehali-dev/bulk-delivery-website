@@ -107,7 +107,7 @@ export default function Index() {
             </h1>
 
             <p className="text-brand-gray-light text-lg md:text-xl max-w-xl leading-relaxed mb-10 animate-fade-in" style={{ animationDelay: '0.2s', opacity: 0 }}>
-              Доставка сыпучих материалов, аренда спецтехники, вывоз мусора. Работаем по Москве и области — круглосуточно.
+              Доставка сыпучих материалов, аренда спецтехники, вывоз мусора. Работаем в Ростове-на-Дону, Аксае и Батайске — круглосуточно.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.3s', opacity: 0 }}>
