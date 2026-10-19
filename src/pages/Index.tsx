@@ -6,21 +6,21 @@ const services = [
   {
     icon: "Package",
     title: "Доставка материалов",
-    desc: "Щебень, песок, керамзит, грунт, торф — доставим в любой объём в день заказа",
+    desc: "Щебень, песок, отсев, глина, ФАЛ — доставим в любой объём в день заказа",
     href: "/delivery",
     color: "bg-brand-orange",
   },
   {
     icon: "Excavator",
     title: "Аренда спецтехники",
-    desc: "Экскаваторы, бульдозеры, краны, погрузчики — весь парк в вашем распоряжении",
+    desc: "Экскаваторы, автовышка, манипулятор, гидромолот, самосвалы — с оператором",
     href: "/equipment",
     color: "bg-brand-dark",
   },
   {
     icon: "Trash2",
     title: "Вывоз мусора",
-    desc: "Строительный, бытовой, крупногабаритный мусор. Контейнер 8-27 м³",
+    desc: "Газели, ЗИЛы, КамАЗы. С грузчиками или экскаватором. КамАЗ с экскаватором — от 16 000 ₽",
     href: "/garbage",
     color: "bg-brand-gray",
   },
@@ -41,17 +41,17 @@ const benefits = [
 ];
 
 const materials = [
-  { name: "Щебень фракции 20-40", price: "от 1 200 ₽/т", icon: "Mountain" },
-  { name: "Речной песок", price: "от 900 ₽/т", icon: "Waves" },
-  { name: "Торф", price: "от 800 ₽/т", icon: "Leaf" },
-  { name: "Керамзит", price: "от 1 500 ₽/т", icon: "Circle" },
-  { name: "Плодородный грунт", price: "от 700 ₽/т", icon: "Sprout" },
-  { name: "ПГС (смесь)", price: "от 850 ₽/т", icon: "Layers" },
+  { name: "Щебень фракции 20-40", price: "от 1 200 ₽/т", icon: "Mountain", href: "/delivery/shcheben-20-40" },
+  { name: "Речной песок", price: "от 900 ₽/т", icon: "Waves", href: "/delivery/pesok" },
+  { name: "Отсев щебня", price: "по запросу", icon: "Layers", href: "/delivery/otsev" },
+  { name: "Глина", price: "по запросу", icon: "Mountain", href: "/delivery/glina" },
+  { name: "ФАЛ (асфальтная крошка)", price: "по запросу", icon: "Layers", href: "/delivery/fal" },
+  { name: "ПГС (смесь)", price: "от 850 ₽/т", icon: "Layers", href: "/delivery/pgs" },
 ];
 
 const reviews = [
   { name: "Алексей С.", role: "Застройщик", text: "Заказывали щебень 4 раза — каждый раз точно в срок, без лишних слов. Настоящие профи.", stars: 5 },
-  { name: "Марина К.", role: "Ландшафтный дизайнер", text: "Привезли торф и грунт для объекта. Водитель помог разгрузить точно куда надо.", stars: 5 },
+  { name: "Марина К.", role: "Ландшафтный дизайнер", text: "Привезли чернозём и торф для объекта. Водитель помог разгрузить точно куда надо.", stars: 5 },
   { name: "ООО СтройГрупп", role: "Строительная компания", text: "Сотрудничаем 3 года. Объёмы большие — ни разу не подвели. Рекомендуем.", stars: 5 },
 ];
 
@@ -190,7 +190,7 @@ export default function Index() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {materials.map((mat) => (
-              <div key={mat.name} className="bg-white border border-brand-black/10 p-6 flex items-center justify-between hover:border-brand-orange hover:shadow-lg transition-all group">
+              <Link to={mat.href} key={mat.name} className="bg-white border border-brand-black/10 p-6 flex items-center justify-between hover:border-brand-orange hover:shadow-lg transition-all group">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-brand-black flex items-center justify-center group-hover:bg-brand-orange transition-colors">
                     <Icon name={mat.icon as any} size={22} className="text-white" />
@@ -198,7 +198,7 @@ export default function Index() {
                   <span className="font-golos font-semibold text-brand-black">{mat.name}</span>
                 </div>
                 <span className="font-oswald text-brand-orange text-lg whitespace-nowrap">{mat.price}</span>
-              </div>
+              </Link>
             ))}
           </div>
 

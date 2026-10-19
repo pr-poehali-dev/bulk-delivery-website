@@ -1,36 +1,33 @@
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
-import { containers } from "@/data/containers";
+import { garbageVehicleItems, garbageWasteItems } from "@/data/garbageItems";
+import type { LandingItem } from "@/data/types";
 import { useSeo } from "@/hooks/useSeo";
-
-const wasteTypes = [
-  { icon: "HardHat", name: "Строительный мусор", desc: "Бетон, кирпич, штукатурка, плитка" },
-  { icon: "Sofa", name: "Крупногабаритный", desc: "Мебель, техника, двери, окна" },
-  { icon: "Home", name: "Демонтаж", desc: "После сноса построек и перегородок" },
-  { icon: "Leaf", name: "Зелёные отходы", desc: "Ветки, трава, листья, спилы" },
-  { icon: "Box", name: "Упаковка", desc: "Картон, поддоны, плёнка, пенопласт" },
-  { icon: "Recycle", name: "Вторсырьё", desc: "Металл, стекло, бумага (с сортировкой)" },
-];
 
 const steps = [
   { n: "1", title: "Заявка", desc: "Позвоните или оставьте заявку онлайн" },
-  { n: "2", title: "Подача контейнера", desc: "Привезём контейнер в удобное время" },
-  { n: "3", title: "Заполнение", desc: "Заполняйте контейнер в своём темпе" },
-  { n: "4", title: "Вывоз", desc: "Заберём и утилизируем экологично" },
+  { n: "2", title: "Подбор машины", desc: "Подберём машину и способ погрузки" },
+  { n: "3", title: "Погрузка", desc: "Грузчики или экскаватор-погрузчик" },
+  { n: "4", title: "Вывоз", desc: "Вывезем и утилизируем мусор" },
+];
+
+const groups: { title: string; items: LandingItem[] }[] = [
+  { title: "Газели бортовые и закрытые", items: garbageVehicleItems.filter((i) => i.name.startsWith("Газель")) },
+  { title: "КамАЗы 10 и 20 куб.м", items: garbageVehicleItems.filter((i) => i.name.startsWith("КамАЗ")) },
+  { title: "ЗИЛы", items: garbageVehicleItems.filter((i) => i.name.startsWith("ЗИЛ")) },
 ];
 
 export default function Garbage() {
   useSeo({
-    title: "Вывоз мусора контейнерами в Ростове-на-Дону — от 6 500 ₽ | РостовТехРезерв",
+    title: "Вывоз мусора в Ростове-на-Дону — Газель, ЗИЛ, КамАЗ с грузчиками и экскаватором | РостовТехРезерв",
     description:
-      "Вывоз строительного и крупногабаритного мусора контейнерами 8–27 м³ в Ростове-на-Дону, Аксае и Батайске. Официальная утилизация, документы. Подача в день заказа.",
-    keywords: "вывоз мусора ростов-на-дону, заказать контейнер для мусора, вывоз строительного мусора",
+      "Вывоз мусора в Ростове-на-Дону, Аксае и Батайске. Газели, ЗИЛы, КамАЗы 10 и 20 куб.м, погрузка грузчиками или экскаватором. КамАЗ с экскаватором — от 16 000 ₽. Заявки до 17:00.",
+    keywords: "вывоз мусора ростов-на-дону, вывоз мусора камаз, вывоз мусора газель, вывоз строительного мусора, камаз с экскаватором",
   });
 
   return (
     <Layout>
-      {/* Hero */}
       <section className="bg-brand-black py-24 relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -50,12 +47,12 @@ export default function Garbage() {
             ВЫВОЗ<br /><span className="text-brand-orange">МУСОРА</span>
           </h1>
           <p className="text-brand-gray-light text-xl max-w-2xl leading-relaxed mb-10">
-            Контейнеры 8–27 м³. Строительный мусор, демонтаж, крупногабарит. Официальная утилизация, документы.
+            Газели, ЗИЛы и КамАЗы. С погрузкой грузчиками или экскаватором-погрузчиком, а также без погрузки. КамАЗ с экскаватором — от 16 000 ₽.
           </p>
           <div className="flex flex-wrap gap-4">
             <a href="tel:+79953985420" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
               <Icon name="Phone" size={20} />
-              Заказать контейнер
+              Заказать вывоз
             </a>
             <Link to="/calculator" className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-white hover:text-brand-black transition-all">
               <Icon name="Calculator" size={20} />
@@ -65,7 +62,6 @@ export default function Garbage() {
         </div>
       </section>
 
-      {/* Steps */}
       <section className="py-16 bg-brand-orange">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -80,63 +76,66 @@ export default function Garbage() {
         </div>
       </section>
 
-      {/* Containers */}
       <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 space-y-16">
+          <div>
+            <span className="text-brand-orange font-oswald text-sm tracking-[0.3em] uppercase">Выберите машину и погрузку</span>
+            <h2 className="font-oswald text-4xl md:text-5xl text-brand-black mt-2 orange-line">ВЫВОЗ ПО ТИПУ МАШИНЫ</h2>
+          </div>
+          {groups.map((g) => (
+            <div key={g.title}>
+              <h3 className="font-oswald text-2xl text-brand-black uppercase mb-6">{g.title}</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {g.items.map((c) => (
+                  <Link
+                    key={c.slug}
+                    to={`/garbage/${c.slug}`}
+                    className="border border-brand-black/10 p-6 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col"
+                  >
+                    <div className="w-12 h-12 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center mb-4">
+                      <Icon name={c.icon as any} fallback="Truck" size={22} className="text-white" />
+                    </div>
+                    <h4 className="font-oswald text-lg text-brand-black uppercase mb-2 leading-tight">{c.name}</h4>
+                    <p className="text-xs text-brand-gray-mid mb-4 flex-1">{c.shortDesc}</p>
+                    <div className="font-oswald text-brand-orange text-lg border-t border-brand-black/10 pt-3 flex items-center justify-between">
+                      {c.price}
+                      <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-20 bg-brand-cream">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-14">
-            <span className="text-brand-orange font-oswald text-sm tracking-[0.3em] uppercase">Выберите подходящий</span>
-            <h2 className="font-oswald text-4xl md:text-5xl text-brand-black mt-2 orange-line">РАЗМЕРЫ КОНТЕЙНЕРОВ</h2>
+            <span className="text-brand-orange font-oswald text-sm tracking-[0.3em] uppercase">Что вывозим</span>
+            <h2 className="font-oswald text-4xl md:text-5xl text-brand-black mt-2 orange-line">ТИПЫ ОТХОДОВ</h2>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {containers.map((c, i) => (
+            {garbageWasteItems.map((w) => (
               <Link
-                to={`/garbage/${c.slug}`}
-                key={c.slug}
-                className={`p-8 flex flex-col hover-lift ${i === 2 ? "bg-brand-black text-white" : "border border-brand-black/15 bg-white"}`}
+                key={w.slug}
+                to={`/garbage/${w.slug}`}
+                className="bg-white p-6 flex items-start gap-4 hover:shadow-lg transition-all group border border-transparent hover:border-brand-orange"
               >
-                <div className={`text-xs font-oswald tracking-[0.2em] uppercase mb-3 ${i === 2 ? "text-brand-orange" : "text-brand-gray-mid"}`}>{c.type}</div>
-                <div className={`font-oswald text-5xl mb-1 ${i === 2 ? "text-brand-orange" : "text-brand-black"}`}>{c.volume}</div>
-                <div className={`text-sm mb-4 font-golos ${i === 2 ? "text-white/60" : "text-brand-gray-mid"}`}>до {c.weight}</div>
-                <p className={`text-sm leading-relaxed mb-6 flex-1 ${i === 2 ? "text-white/70" : "text-brand-gray-mid"}`}>{c.shortDesc}</p>
-                <div className={`font-oswald text-2xl mb-4 ${i === 2 ? "text-white" : "text-brand-orange"}`}>{c.price}</div>
-                <span className={`block text-center py-3 font-oswald text-sm tracking-wider uppercase transition-colors ${i === 2 ? "bg-brand-orange text-white group-hover:bg-brand-orange-dark" : "border border-brand-black text-brand-black hover:bg-brand-black hover:text-white"}`}>
-                  Подробнее
-                </span>
+                <div className="w-12 h-12 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center shrink-0">
+                  <Icon name={w.icon as any} fallback="Trash2" size={22} className="text-white" />
+                </div>
+                <h4 className="font-oswald text-brand-black uppercase text-lg leading-tight">{w.name}</h4>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Waste types */}
-      <section className="py-20 bg-brand-cream">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14">
-            <span className="text-brand-orange font-oswald text-sm tracking-[0.3em] uppercase">Что принимаем</span>
-            <h2 className="font-oswald text-4xl md:text-5xl text-brand-black mt-2 orange-line">ТИПЫ ОТХОДОВ</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {wasteTypes.map((w) => (
-              <div key={w.name} className="bg-white p-6 flex items-start gap-4 hover:shadow-lg transition-all group border border-transparent hover:border-brand-orange">
-                <div className="w-12 h-12 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center shrink-0">
-                  <Icon name={w.icon as any} size={22} className="text-white" />
-                </div>
-                <div>
-                  <h4 className="font-oswald text-brand-black uppercase text-lg mb-1">{w.name}</h4>
-                  <p className="text-brand-gray-mid text-sm">{w.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
       <section className="py-20 bg-brand-black">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="font-oswald text-4xl md:text-6xl text-white uppercase mb-6">Очистим объект<br /><span className="text-brand-orange">за один день</span></h2>
-          <p className="text-brand-gray-light text-lg mb-10 max-w-xl mx-auto">Доставим контейнер сегодня. Заберём — когда скажете.</p>
+          <h2 className="font-oswald text-4xl md:text-6xl text-white uppercase mb-6">Нужен вывоз <span className="text-brand-orange">сегодня?</span></h2>
+          <p className="text-brand-gray-light text-lg mb-10 max-w-xl mx-auto">Заявки до 17:00 выполняем в день обращения.</p>
           <a href="tel:+79953985420" className="inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-10 py-4 font-oswald text-xl tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
             <Icon name="Phone" size={22} />
             Заказать вывоз мусора

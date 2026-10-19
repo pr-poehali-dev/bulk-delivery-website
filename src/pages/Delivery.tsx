@@ -13,10 +13,10 @@ const howWorks = [
 
 export default function Delivery() {
   useSeo({
-    title: "Доставка сыпучих материалов в Ростове-на-Дону — щебень, песок, грунт | РостовТехРезерв",
+    title: "Доставка сыпучих материалов в Ростове-на-Дону — щебень, песок, отсев | РостовТехРезерв",
     description:
-      "Доставка щебня, песка, торфа, керамзита, грунта и других сыпучих материалов в Ростове-на-Дону, Аксае и Батайске в день заказа. Собственный автопарк, цены от 700 ₽/т.",
-    keywords: "доставка сыпучих материалов ростов-на-дону, купить щебень песок грунт",
+      "Доставка щебня, песка, отсева, глины, ФАЛ, торфа, керамзита и других сыпучих материалов в Ростове-на-Дону, Аксае и Батайске. Заявки до 17:00 — доставка в день обращения.",
+    keywords: "доставка сыпучих материалов ростов-на-дону, купить щебень песок отсев глину",
   });
 
   return (
@@ -41,7 +41,7 @@ export default function Delivery() {
             ДОСТАВКА<br /><span className="text-brand-orange">МАТЕРИАЛОВ</span>
           </h1>
           <p className="text-brand-gray-light text-xl max-w-2xl leading-relaxed mb-10">
-            Щебень, песок, торф, грунт — доставим любой объём в день заказа по Ростову-на-Дону, Аксаю и Батайску. Работаем с 6:00 до 23:00 ежедневно.
+            Щебень, песок, отсев, глина, ФАЛ — доставим любой объём в день заказа по Ростову-на-Дону, Аксаю и Батайску. Работаем с 6:00 до 23:00 ежедневно.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link to="/calculator" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
@@ -92,7 +92,7 @@ export default function Delivery() {
                 <h3 className="font-oswald text-2xl text-brand-black uppercase mb-2">{mat.name}</h3>
                 <p className="text-brand-gray-mid text-sm mb-4 leading-relaxed flex-1">{mat.shortDesc}</p>
                 <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4 flex items-center justify-between">
-                  {mat.price}/т
+                  {mat.price.startsWith("от") ? `${mat.price}/т` : mat.price}
                   <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
                 </div>
               </Link>

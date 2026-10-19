@@ -17,7 +17,7 @@ export default function Equipment() {
   useSeo({
     title: "Аренда спецтехники в Ростове-на-Дону — экскаваторы, краны, самосвалы | РостовТехРезерв",
     description:
-      "Аренда спецтехники с оператором в Ростове-на-Дону, Аксае и Батайске. Экскаваторы, бульдозеры, автокраны, погрузчики, самосвалы. Подача 2–4 часа, цены от 2 500 ₽/час.",
+      "Аренда спецтехники с оператором в Ростове-на-Дону, Аксае и Батайске. Экскаваторы, экскаватор-погрузчик, мини-экскаватор, автовышка, манипулятор, гидромолот, самосвалы. Заявки до 17:00 — выезд в день обращения.",
     keywords: "аренда спецтехники ростов-на-дону, экскаватор кран самосвал аренда",
   });
 
@@ -43,7 +43,7 @@ export default function Equipment() {
             АРЕНДА<br /><span className="text-brand-orange">СПЕЦТЕХНИКИ</span>
           </h1>
           <p className="text-brand-gray-light text-xl max-w-2xl leading-relaxed mb-10">
-            Более 80 единиц техники в собственном парке. Экскаваторы, бульдозеры, краны, погрузчики — подача в течение 2–4 часов.
+            Экскаваторы, мини-экскаватор, автовышка, манипулятор, гидромолот, самосвалы — подача в течение 2–4 часов.
           </p>
           <div className="flex flex-wrap gap-4">
             <a href="tel:+79953985420" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
@@ -77,10 +77,9 @@ export default function Equipment() {
                   <Icon name={eq.icon as any} size={24} className="text-white" />
                 </div>
                 <h3 className="font-oswald text-xl text-brand-black uppercase mb-1 leading-tight">{eq.name}</h3>
-                <div className="text-brand-gray-mid text-xs mb-4 font-golos">Объём: {eq.capacity}</div>
                 <p className="text-xs text-brand-gray-mid mb-5 flex-1">{eq.shortDesc}</p>
                 <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4 flex items-center justify-between">
-                  {eq.price}/ч
+                  {eq.price.startsWith("от") ? `${eq.price}/ч` : eq.price}
                   <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
                 </div>
               </Link>

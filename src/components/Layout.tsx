@@ -8,7 +8,6 @@ const navLinks = [
   { href: "/equipment", label: "Аренда спецтехники" },
   { href: "/garbage", label: "Вывоз мусора" },
   { href: "/calculator", label: "Калькулятор" },
-  { href: "/about", label: "О компании" },
   { href: "/blog", label: "Блог" },
   { href: "/faq", label: "Вопросы и ответы" },
   { href: "/contacts", label: "Контакты" },
@@ -185,7 +184,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <h4 className="font-oswald text-sm tracking-widest uppercase mb-5 text-brand-orange">Компания</h4>
               <ul className="space-y-3">
                 {[
-                  { href: "/about", label: "О компании" },
                   { href: "/blog", label: "Блог и статьи" },
                   { href: "/faq", label: "Вопросы и ответы" },
                   { href: "/contacts", label: "Контакты" },

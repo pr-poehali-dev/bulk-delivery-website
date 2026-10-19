@@ -3,29 +3,58 @@
   <url><loc>https://rostovtehrezerv.ru/</loc><priority>1.0</priority></url>
   <url><loc>https://rostovtehrezerv.ru/delivery</loc><priority>0.9</priority></url>
   <url><loc>https://rostovtehrezerv.ru/delivery/shcheben</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/delivery/shcheben-5-20</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/delivery/shcheben-20-40</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/delivery/shcheben-40-70</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/delivery/otsev</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/delivery/pesok</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/delivery/torf</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/delivery/keramzit</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/delivery/plodorodnyj-grunt</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/delivery/pgs</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/delivery/chernozem</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/delivery/gravij</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/delivery/glina</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/delivery/fal</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/equipment</loc><priority>0.9</priority></url>
   <url><loc>https://rostovtehrezerv.ru/equipment/ekskavator-gusenichnyj</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/equipment/ekskavator-kolesnyj</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/equipment/buldozer</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/equipment/ekskavator-pogruzchik</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/equipment/mini-ekskavator</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/equipment/avtokran</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/equipment/pogruzchik-frontalnyj</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/equipment/samosval</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/equipment/grejder</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/equipment/vibrokatok</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/equipment/avtovyshka</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/equipment/manipulyator</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/equipment/gidromolot</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/equipment/samosval-10</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/equipment/samosval-20</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/garbage</loc><priority>0.9</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/garbage/konteiner-8m3</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/garbage/konteiner-15m3</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/garbage/konteiner-20m3</loc><priority>0.8</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/garbage/konteiner-27m3</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-bortovaya-3m</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-bortovaya-3m-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-bortovaya-4m</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-bortovaya-4m-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-bortovaya-5m</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-bortovaya-5m-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-zakrytaya-3m</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-zakrytaya-3m-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-zakrytaya-4m</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-zakrytaya-4m-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-zakrytaya-5m</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/gazel-zakrytaya-5m-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/kamaz-10</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/kamaz-10-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/kamaz-10-s-ekskavatorom</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/kamaz-20</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/kamaz-20-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/kamaz-20-s-ekskavatorom</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/zil</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/zil-s-gruzchikami</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/zil-s-ekskavatorom</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/stroitelnyj-musor</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/krupnogabaritnyj-musor</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/vyvoz-mebeli</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/musor-posle-remonta</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/musor-posle-demontazha</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/vetki-i-zelenye-othody</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/bytovoj-musor</loc><priority>0.8</priority></url>
+  <url><loc>https://rostovtehrezerv.ru/garbage/vyvoz-betona-i-kirpicha</loc><priority>0.8</priority></url>
   <url><loc>https://rostovtehrezerv.ru/calculator</loc><priority>0.7</priority></url>
-  <url><loc>https://rostovtehrezerv.ru/about</loc><priority>0.5</priority></url>
   <url><loc>https://rostovtehrezerv.ru/contacts</loc><priority>0.6</priority></url>
   <url><loc>https://rostovtehrezerv.ru/blog</loc><priority>0.5</priority></url>
   <url><loc>https://rostovtehrezerv.ru/faq</loc><priority>0.5</priority></url>

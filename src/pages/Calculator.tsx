@@ -10,26 +10,16 @@ const materialOptions = [
   { id: "sand", name: "Песок", pricePerTon: 900 },
   { id: "torf", name: "Торф", pricePerTon: 800 },
   { id: "keramzit", name: "Керамзит", pricePerTon: 1500 },
-  { id: "grunt", name: "Плодородный грунт", pricePerTon: 700 },
   { id: "pgs", name: "ПГС", pricePerTon: 850 },
   { id: "chernozem", name: "Чернозём", pricePerTon: 1100 },
 ];
 
 const equipmentOptions = [
   { id: "excavator_g", name: "Экскаватор гусеничный", pricePerHour: 3500 },
-  { id: "excavator_w", name: "Экскаватор колёсный", pricePerHour: 3000 },
-  { id: "buldozer", name: "Бульдозер", pricePerHour: 4000 },
   { id: "kran", name: "Автокран", pricePerHour: 4500 },
-  { id: "pogr", name: "Погрузчик фронтальный", pricePerHour: 2800 },
-  { id: "samosval", name: "Самосвал 10–20 т", pricePerHour: 2500 },
 ];
 
-const containerOptions = [
-  { id: "c8", name: "Контейнер 8 м³", price: 6500 },
-  { id: "c15", name: "Контейнер 15 м³", price: 9000 },
-  { id: "c20", name: "Контейнер 20 м³", price: 11500 },
-  { id: "c27", name: "Контейнер 27 м³", price: 14000 },
-];
+const containerOptions = [{ id: "kamaz_exc", name: "КамАЗ с экскаватором", price: 16000 }];
 
 const distanceSurcharge = (km: number) => {
   if (km <= 30) return 0;
@@ -235,8 +225,8 @@ export default function Calculator() {
 
               {service === "garbage" && (
                 <div>
-                  <label className="block font-oswald text-sm tracking-widest uppercase text-brand-black mb-3">Объём контейнера</label>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <label className="block font-oswald text-sm tracking-widest uppercase text-brand-black mb-3">Вариант вывоза</label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {containerOptions.map((c) => (
                       <button
                         key={c.id}
@@ -247,11 +237,14 @@ export default function Calculator() {
                             : "border-brand-black/15 text-brand-black hover:border-brand-orange"
                         }`}
                       >
-                        <div className="font-oswald text-2xl">{c.name.split(" ")[1]}</div>
+                        <div className="font-oswald text-2xl">{c.name}</div>
                         <div className="font-golos text-xs mt-1 opacity-70">{c.price.toLocaleString()} ₽</div>
                       </button>
                     ))}
                   </div>
+                  <p className="text-xs text-brand-gray-mid mt-3 font-golos">
+                    Стоимость вывоза Газелью, ЗИЛом и КамАЗом без экскаватора рассчитает менеджер по телефону.
+                  </p>
                 </div>
               )}
             </div>
