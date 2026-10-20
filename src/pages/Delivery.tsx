@@ -84,16 +84,25 @@ export default function Delivery() {
               <Link
                 key={mat.slug}
                 to={`/delivery/${mat.slug}`}
-                className="border border-brand-black/10 p-6 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col"
+                className="border border-brand-black/10 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col overflow-hidden"
               >
-                <div className="w-14 h-14 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center mb-5">
-                  <Icon name={mat.icon as any} size={24} className="text-white" />
-                </div>
-                <h3 className="font-oswald text-2xl text-brand-black uppercase mb-2">{mat.name}</h3>
-                <p className="text-brand-gray-mid text-sm mb-4 leading-relaxed flex-1">{mat.shortDesc}</p>
-                <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4 flex items-center justify-between">
-                  {mat.price.startsWith("от") ? `${mat.price}/т` : mat.price}
-                  <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                {mat.image && (
+                  <div className="aspect-[4/3] overflow-hidden bg-brand-cream">
+                    <img
+                      src={mat.image}
+                      alt={mat.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="font-oswald text-2xl text-brand-black uppercase mb-2">{mat.name}</h3>
+                  <p className="text-brand-gray-mid text-sm mb-4 leading-relaxed flex-1">{mat.shortDesc}</p>
+                  <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4 flex items-center justify-between">
+                    {mat.price.startsWith("от") ? `${mat.price}/т` : mat.price}
+                    <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                  </div>
                 </div>
               </Link>
             ))}

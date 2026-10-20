@@ -32,6 +32,7 @@ export interface LandingItem {
   metaDescription: string;
   keywords: string;
   orderLabel: string;
+  image?: string;
   quantityField?: LandingQuantityField;
   specs: LandingSpec[];
   applications: string[];

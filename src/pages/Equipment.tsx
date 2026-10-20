@@ -71,16 +71,25 @@ export default function Equipment() {
               <Link
                 key={eq.slug}
                 to={`/equipment/${eq.slug}`}
-                className="border border-brand-black/10 p-6 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col"
+                className="border border-brand-black/10 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col overflow-hidden"
               >
-                <div className="w-14 h-14 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center mb-5">
-                  <Icon name={eq.icon as any} size={24} className="text-white" />
-                </div>
-                <h3 className="font-oswald text-xl text-brand-black uppercase mb-1 leading-tight">{eq.name}</h3>
-                <p className="text-xs text-brand-gray-mid mb-5 flex-1">{eq.shortDesc}</p>
-                <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4 flex items-center justify-between">
-                  {eq.price.startsWith("от") ? `${eq.price}/ч` : eq.price}
-                  <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                {eq.image && (
+                  <div className="aspect-[4/3] overflow-hidden bg-brand-cream">
+                    <img
+                      src={eq.image}
+                      alt={eq.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="font-oswald text-xl text-brand-black uppercase mb-1 leading-tight">{eq.name}</h3>
+                  <p className="text-xs text-brand-gray-mid mb-5 flex-1">{eq.shortDesc}</p>
+                  <div className="font-oswald text-brand-orange text-xl border-t border-brand-black/10 pt-4 flex items-center justify-between">
+                    {eq.price.startsWith("от") ? `${eq.price}/ч` : eq.price}
+                    <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                  </div>
                 </div>
               </Link>
             ))}

@@ -159,6 +159,23 @@ export default function LandingPage({ group }: { group: LandingGroup }) {
         </div>
       </section>
 
+      {item.image && (
+        <section className="bg-brand-cream">
+          <div className="max-w-7xl mx-auto px-6 py-12">
+            <figure className="relative overflow-hidden border-b-4 border-brand-orange shadow-xl">
+              <img
+                src={item.image}
+                alt={`${item.name} в Ростове-на-Дону`}
+                loading="eager"
+                width={1360}
+                height={768}
+                className="w-full h-auto max-h-[520px] object-cover"
+              />
+            </figure>
+          </div>
+        </section>
+      )}
+
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-10">
@@ -241,12 +258,17 @@ export default function LandingPage({ group }: { group: LandingGroup }) {
                 <Link
                   key={r.slug}
                   to={`${group.basePath}/${r.slug}`}
-                  className="border border-brand-black/10 p-5 hover:border-brand-orange hover:shadow-lg transition-all group"
+                  className="border border-brand-black/10 hover:border-brand-orange hover:shadow-lg transition-all group overflow-hidden"
                 >
-                  <h3 className="font-oswald text-lg text-brand-black uppercase mb-2 leading-tight">{r.name}</h3>
-                  <div className="font-oswald text-brand-orange flex items-center justify-between">
-                    {r.price}
-                    <Icon name="ArrowRight" size={16} className="text-brand-black group-hover:text-brand-orange transition-colors" />
+                  {r.image && (
+                    <img src={r.image} alt={r.name} loading="lazy" className="w-full h-36 object-cover" />
+                  )}
+                  <div className="p-5">
+                    <h3 className="font-oswald text-lg text-brand-black uppercase mb-2 leading-tight">{r.name}</h3>
+                    <div className="font-oswald text-brand-orange flex items-center justify-between">
+                      {r.price}
+                      <Icon name="ArrowRight" size={16} className="text-brand-black group-hover:text-brand-orange transition-colors" />
+                    </div>
                   </div>
                 </Link>
               ))}

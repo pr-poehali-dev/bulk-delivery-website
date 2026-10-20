@@ -90,16 +90,25 @@ export default function Garbage() {
                   <Link
                     key={c.slug}
                     to={`/garbage/${c.slug}`}
-                    className="border border-brand-black/10 p-6 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col"
+                    className="border border-brand-black/10 hover:border-brand-orange hover:shadow-xl transition-all group flex flex-col overflow-hidden"
                   >
-                    <div className="w-12 h-12 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center mb-4">
-                      <Icon name={c.icon as any} fallback="Truck" size={22} className="text-white" />
-                    </div>
-                    <h4 className="font-oswald text-lg text-brand-black uppercase mb-2 leading-tight">{c.name}</h4>
-                    <p className="text-xs text-brand-gray-mid mb-4 flex-1">{c.shortDesc}</p>
-                    <div className="font-oswald text-brand-orange text-lg border-t border-brand-black/10 pt-3 flex items-center justify-between">
-                      {c.price}
-                      <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                    {c.image && (
+                      <div className="aspect-[4/3] overflow-hidden bg-brand-cream">
+                        <img
+                          src={c.image}
+                          alt={`Вывоз мусора: ${c.name}`}
+                          loading="lazy"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    )}
+                    <div className="p-5 flex flex-col flex-1">
+                      <h4 className="font-oswald text-lg text-brand-black uppercase mb-2 leading-tight">{c.name}</h4>
+                      <p className="text-xs text-brand-gray-mid mb-4 flex-1">{c.shortDesc}</p>
+                      <div className="font-oswald text-brand-orange text-lg border-t border-brand-black/10 pt-3 flex items-center justify-between">
+                        {c.price}
+                        <Icon name="ArrowRight" size={18} className="text-brand-black group-hover:text-brand-orange group-hover:translate-x-1 transition-all" />
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -120,12 +129,19 @@ export default function Garbage() {
               <Link
                 key={w.slug}
                 to={`/garbage/${w.slug}`}
-                className="bg-white p-6 flex items-start gap-4 hover:shadow-lg transition-all group border border-transparent hover:border-brand-orange"
+                className="bg-white hover:shadow-lg transition-all group border border-transparent hover:border-brand-orange overflow-hidden"
               >
-                <div className="w-12 h-12 bg-brand-black group-hover:bg-brand-orange transition-colors flex items-center justify-center shrink-0">
-                  <Icon name={w.icon as any} fallback="Trash2" size={22} className="text-white" />
-                </div>
-                <h4 className="font-oswald text-brand-black uppercase text-lg leading-tight">{w.name}</h4>
+                {w.image && (
+                  <div className="aspect-[16/10] overflow-hidden bg-brand-cream">
+                    <img
+                      src={w.image}
+                      alt={w.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+                <h4 className="font-oswald text-brand-black uppercase text-lg leading-tight p-5">{w.name}</h4>
               </Link>
             ))}
           </div>

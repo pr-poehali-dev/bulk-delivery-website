@@ -18,7 +18,21 @@ const baseAdvantages = [
   `Заявки до ${REQUEST_DEADLINE} выполняем в день обращения`,
 ];
 
-const items: LandingItem[] = [
+const CDN = "https://cdn.poehali.dev/projects/21894189-b302-4932-abcf-69f56441957c/files";
+
+const images: Record<string, string> = {
+  "ekskavator-gusenichnyj": `${CDN}/f05f1eb1-1be3-4727-a9dc-8317fbcf89e7.jpg`,
+  "ekskavator-pogruzchik": `${CDN}/8c3b241d-857d-4a17-b773-fc6c45d728c2.jpg`,
+  "mini-ekskavator": `${CDN}/36e1d7d2-4dd0-4036-bf95-db288aaa50a8.jpg`,
+  avtokran: `${CDN}/584a389e-f610-48e0-bc4d-a7a929bde001.jpg`,
+  avtovyshka: `${CDN}/edd554f6-861f-446d-b3d3-dd5e82ee9de2.jpg`,
+  manipulyator: `${CDN}/6311eae3-2f45-4acd-858f-92fa7e9f8fab.jpg`,
+  gidromolot: `${CDN}/5d970360-19a3-41b3-8f8f-7d04da395682.jpg`,
+  "samosval-10": `${CDN}/51d6c3de-8e13-49ad-92b4-83f9a583ac3b.jpg`,
+  "samosval-20": `${CDN}/dc0c98ea-be32-4788-8299-f33cad2b4b54.jpg`,
+};
+
+const baseItems: LandingItem[] = [
   {
     slug: "ekskavator-gusenichnyj",
     name: "Экскаватор гусеничный",
@@ -380,6 +394,8 @@ const items: LandingItem[] = [
     related: ["samosval-10", "ekskavator-gusenichnyj", "ekskavator-pogruzchik", "gidromolot"],
   },
 ];
+
+const items: LandingItem[] = baseItems.map((i) => ({ ...i, image: images[i.slug] }));
 
 export const equipmentGroup: LandingGroup = {
   basePath: "/equipment",

@@ -1,6 +1,46 @@
 import type { LandingItem, LandingGroup, LandingFaq } from "./types";
 import { garbageCommonFaq, garbageOrderBlock, ON_REQUEST, ON_REQUEST_NOTE, REQUEST_DEADLINE } from "./common";
 
+const CDN = "https://cdn.poehali.dev/projects/21894189-b302-4932-abcf-69f56441957c/files";
+
+const photo = {
+  gazelBort: `${CDN}/f0d9666f-4c51-4366-bd26-1c1e81396e12.jpg`,
+  gazelClosed: `${CDN}/4c6d9da8-3692-4745-b271-9f6040cdf54c.jpg`,
+  gazelClosedMovers: `${CDN}/fb5eb56d-e6ea-49e5-b393-722e71b42d2f.jpg`,
+  gazelBortMovers: `${CDN}/5959bcd0-cc8f-4645-86ee-b42c2e2bb72c.jpg`,
+  kamazPlain: `${CDN}/c1652024-afa9-414f-9d92-c894389f911c.jpg`,
+  kamazWorkers: `${CDN}/6e848b87-0049-4542-b0bf-3cf0dbd0622d.jpg`,
+  kamazExcavator: `${CDN}/6b49a81e-55fc-4678-bb77-e89d855f84de.jpg`,
+  zil: `${CDN}/976c4c4f-9480-41dc-a4c1-e78871ec9855.jpg`,
+  renovation: `${CDN}/b91b38e0-2062-418b-9721-427ea758217c.jpg`,
+  bulky: `${CDN}/7b276971-8a9d-4ca9-ab04-82dac8037896.jpg`,
+  furniture: `${CDN}/7fa55dd3-beff-4f94-af79-27303da5675a.jpg`,
+  demolition: `${CDN}/a40a1c9a-ec2f-4788-8c18-e40bd6838afa.jpg`,
+  branches: `${CDN}/72291ee9-b7e0-4115-b1e7-749a6e557dbe.jpg`,
+  household: `${CDN}/e824e3b0-e695-442d-bcd6-ac0c28ae25cd.jpg`,
+  concrete: `${CDN}/746ee245-1f60-49d8-b452-07eed02a8822.jpg`,
+  construction: `${CDN}/b4b8b209-a0db-4e7e-835f-26125004f96c.jpg`,
+};
+
+const wastePhoto: Record<string, string> = {
+  "stroitelnyj-musor": photo.construction,
+  "krupnogabaritnyj-musor": photo.bulky,
+  "vyvoz-mebeli": photo.furniture,
+  "musor-posle-remonta": photo.renovation,
+  "musor-posle-demontazha": photo.demolition,
+  "vetki-i-zelenye-othody": photo.branches,
+  "bytovoj-musor": photo.household,
+  "vyvoz-betona-i-kirpicha": photo.concrete,
+};
+
+const vehiclePhoto = (v: { key: string }, l: "none" | "workers" | "excavator"): string => {
+  if (v.key === "zil") return photo.zil;
+  if (v.key.startsWith("k")) return l === "excavator" ? photo.kamazExcavator : l === "workers" ? photo.kamazWorkers : photo.kamazPlain;
+  const closed = v.key.startsWith("gz");
+  if (l === "workers") return closed ? photo.gazelClosedMovers : photo.gazelBortMovers;
+  return closed ? photo.gazelClosed : photo.gazelBort;
+};
+
 const tripsField = { label: "Количество рейсов", unit: "рейсов", defaultValue: 1, min: 1 };
 
 type Loading = "none" | "workers" | "excavator";
@@ -94,6 +134,7 @@ const vehicleItems: LandingItem[] = vehicles.flatMap((v) =>
       metaDescription: `${fullName} в Ростове-на-Дону, Аксае и Батайске. ${m.short} ${priceTxt} Заявки до ${REQUEST_DEADLINE} — выезд в день обращения.`,
       keywords: `вывоз мусора ${v.name.toLowerCase()} ${m.suffix}, вывоз мусора ростов-на-дону, ${v.name.toLowerCase()} вывоз мусора цена`,
       orderLabel: "Заказать вывоз мусора",
+      image: vehiclePhoto(v, l),
       quantityField: tripsField,
       specs: [
         { label: "Машина", value: v.name },
@@ -252,6 +293,7 @@ const wasteItems: LandingItem[] = wasteTypes.map((w): LandingItem => ({
   metaDescription: `${w.name} в Ростове-на-Дону, Аксае и Батайске. Газели, ЗИЛы и КамАЗы, с грузчиками или экскаватором. Заявки до ${REQUEST_DEADLINE} — выезд в день обращения.`,
   keywords: `${w.name.toLowerCase()}, ${w.name.toLowerCase()} ростов-на-дону, ${w.name.toLowerCase()} цена`,
   orderLabel: "Заказать вывоз мусора",
+  image: wastePhoto[w.slug],
   quantityField: tripsField,
   specs: [
     { label: "Тип отходов", value: w.name.replace("Вывоз ", "") },

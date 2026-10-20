@@ -10,7 +10,24 @@ const crushedStoneAdvantages = [
   `Доставка в день заказа при подаче заявки до ${REQUEST_DEADLINE}`,
 ];
 
-const items: LandingItem[] = [
+const CDN = "https://cdn.poehali.dev/projects/21894189-b302-4932-abcf-69f56441957c/files";
+
+const images: Record<string, string> = {
+  shcheben: `${CDN}/dcf38744-295a-4af4-b21a-739c9a1ce33a.jpg`,
+  "shcheben-5-20": `${CDN}/9edd9139-38f1-4194-938a-e26463d83e32.jpg`,
+  "shcheben-20-40": `${CDN}/cf64c77c-2bd7-49ba-8d61-8e2adda4aa06.jpg`,
+  "shcheben-40-70": `${CDN}/4bcffece-5a2f-4dd6-befa-d762b50f5155.jpg`,
+  otsev: `${CDN}/d23d4125-1fb7-46f6-91db-4b3b0cf1edb8.jpg`,
+  pesok: `${CDN}/75861e34-26b5-447d-aecb-625a287eb064.jpg`,
+  torf: `${CDN}/ac79f981-0702-4958-b526-567a8d439ea8.jpg`,
+  keramzit: `${CDN}/d46544a8-8a15-4b44-995c-0c58dc33f296.jpg`,
+  pgs: `${CDN}/98030981-740a-4cf3-aed2-bd710e01c5cc.jpg`,
+  chernozem: `${CDN}/3c69924b-f378-49e4-ac1f-a11cf23aa2a6.jpg`,
+  glina: `${CDN}/477fccae-7ca8-447d-8782-1d1cda9486de.jpg`,
+  fal: `${CDN}/b16b3f8a-6ed4-43e9-9786-3157f80f5c53.jpg`,
+};
+
+const baseItems: LandingItem[] = [
   {
     slug: "shcheben",
     name: "Щебень",
@@ -640,6 +657,8 @@ const items: LandingItem[] = [
     related: ["shcheben-20-40", "pgs", "otsev", "shcheben-40-70"],
   },
 ];
+
+const items: LandingItem[] = baseItems.map((i) => ({ ...i, image: images[i.slug] }));
 
 export const materialsGroup: LandingGroup = {
   basePath: "/delivery",
