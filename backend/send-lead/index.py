@@ -1,12 +1,14 @@
 import json
 import os
+import html
 import urllib.request
 import urllib.parse
+from datetime import datetime, timezone, timedelta
 
 
 def handler(event: dict, context) -> dict:
     """Принимает заявку с формы сайта и отправляет уведомление в Telegram.
-    Args: event с httpMethod, body (name, phone, message)
+    Args: event с httpMethod, body (name, phone, message, source, page)
     Returns: HTTP-ответ с результатом отправки
     """
     method = event.get('httpMethod', 'GET')
@@ -34,10 +36,11 @@ def handler(event: dict, context) -> dict:
 
     raw_body = event.get('body') or '{}'
     body_data = json.loads(raw_body)
-    name = body_data.get('name', '').strip()
-    phone = body_data.get('phone', '').strip()
-    message = body_data.get('message', '').strip()
-    source = body_data.get('source', 'Сайт').strip()
+    name = str(body_data.get('name', '')).strip()[:200]
+    phone = str(body_data.get('phone', '')).strip()[:50]
+    message = str(body_data.get('message', '')).strip()[:1500]
+    source = str(body_data.get('source', 'Сайт')).strip()[:200]
+    page = str(body_data.get('page', '')).strip()[:300]
 
     if not name or not phone:
         return {
@@ -56,15 +59,21 @@ def handler(event: dict, context) -> dict:
             'body': json.dumps({'error': 'Telegram не настроен'})
         }
 
+    esc = html.escape
+    msk = datetime.now(timezone(timedelta(hours=3))).strftime('%d.%m.%Y %H:%M')
+
     text_lines = [
-        '🔔 *Новая заявка с сайта*',
+        '🔔 <b>Новая заявка с сайта</b>',
         '',
-        f'👤 Имя: {name}',
-        f'📞 Телефон: {phone}',
+        f'👤 Имя: {esc(name)}',
+        f'📞 Телефон: {esc(phone)}',
     ]
     if message:
-        text_lines.append(f'💬 Сообщение: {message}')
-    text_lines.append(f'📍 Источник: {source}')
+        text_lines.append(f'💬 Сообщение: {esc(message)}')
+    text_lines.append(f'📍 Источник: {esc(source)}')
+    if page:
+        text_lines.append(f'🔗 Страница: {esc(page)}')
+    text_lines.append(f'🕒 Время (МСК): {msk}')
 
     text = '\n'.join(text_lines)
 
@@ -72,7 +81,8 @@ def handler(event: dict, context) -> dict:
     payload = urllib.parse.urlencode({
         'chat_id': chat_id,
         'text': text,
-        'parse_mode': 'Markdown'
+        'parse_mode': 'HTML',
+        'disable_web_page_preview': 'true'
     }).encode()
 
     req = urllib.request.Request(tg_url, data=payload, method='POST')
@@ -81,10 +91,11 @@ def handler(event: dict, context) -> dict:
         with urllib.request.urlopen(req, timeout=8) as resp:
             resp.read()
     except Exception as e:
+        print(f'Telegram error: {type(e).__name__}')
         return {
             'statusCode': 502,
             'headers': headers,
-            'body': json.dumps({'error': f'Не удалось отправить в Telegram: {str(e)}'})
+            'body': json.dumps({'error': 'Не удалось отправить в Telegram'})
         }
 
     return {

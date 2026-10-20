@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import { useSeo, useJsonLd } from "@/hooks/useSeo";
 import type { LandingGroup } from "@/data/types";
 
-const SEND_LEAD_URL = "https://functions.poehali.dev/c38f5417-f5e4-4d04-9048-d751bc55b060";
+import { sendLead } from "@/lib/leads";
 
 export default function LandingPage({ group }: { group: LandingGroup }) {
   const { slug } = useParams();
@@ -68,17 +68,12 @@ export default function LandingPage({ group }: { group: LandingGroup }) {
     setLoading(true);
     const qty = item.quantityField ? `. ${item.quantityField.label}: ${quantity} ${item.quantityField.unit}` : "";
     try {
-      const res = await fetch(SEND_LEAD_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: "Клиент со страницы услуги",
-          phone,
-          message: `${item.name}${qty}`,
-          source: `Страница: ${item.name}`,
-        }),
+      await sendLead({
+        name: "Клиент со страницы услуги",
+        phone,
+        message: `${item.name}${qty}`,
+        source: `Страница: ${item.name}`,
       });
-      if (!res.ok) throw new Error();
       setSent(true);
     } catch {
       setError("Не удалось отправить. Позвоните нам: +7 (995) 398-54-20");

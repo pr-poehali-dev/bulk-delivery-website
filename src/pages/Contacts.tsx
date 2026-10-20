@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
+import { sendLead } from "@/lib/leads";
 
-const SEND_LEAD_URL = "https://functions.poehali.dev/c38f5417-f5e4-4d04-9048-d751bc55b060";
 
 export default function Contacts() {
   const [sent, setSent] = useState(false);
@@ -16,12 +16,7 @@ export default function Contacts() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch(SEND_LEAD_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, source: "Страница Контакты" }),
-      });
-      if (!res.ok) throw new Error();
+      await sendLead({ ...form, source: "Страница Контакты" });
       setSent(true);
     } catch {
       setError("Не удалось отправить заявку. Позвоните нам: +7 (995) 398-54-20");

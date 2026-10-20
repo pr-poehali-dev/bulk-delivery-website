@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
+import { sendLead } from "@/lib/leads";
 
 type ServiceType = "delivery" | "equipment" | "garbage";
 
@@ -77,17 +78,12 @@ export default function Calculator() {
     setOrderError("");
     setOrderLoading(true);
     try {
-      const res = await fetch("https://functions.poehali.dev/c38f5417-f5e4-4d04-9048-d751bc55b060", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: "Клиент из калькулятора",
-          phone: orderPhone,
-          message: `Услуга: ${serviceLabel}. Расчётная стоимость: ${total.toLocaleString()} ₽`,
-          source: "Калькулятор стоимости",
-        }),
+      await sendLead({
+        name: "Клиент из калькулятора",
+        phone: orderPhone,
+        message: `Услуга: ${serviceLabel}. Расчётная стоимость: ${total.toLocaleString()} ₽`,
+        source: "Калькулятор стоимости",
       });
-      if (!res.ok) throw new Error();
       setOrderSent(true);
     } catch {
       setOrderError("Не удалось отправить. Позвоните нам: +7 (995) 398-54-20");

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
+import QuickLeadForm from "@/components/QuickLeadForm";
 import { useSeo, useJsonLd } from "@/hooks/useSeo";
 import { blogPosts, getPostBySlug } from "@/data/blog";
 import type { BlogBlock } from "@/data/blog";
@@ -164,6 +165,8 @@ export default function BlogPost() {
           </div>
         </div>
       </article>
+
+      <QuickLeadForm source={`Блог: ${post.title}`} />
 
       <section className="py-16 bg-brand-cream">
         <div className="max-w-7xl mx-auto px-6">
