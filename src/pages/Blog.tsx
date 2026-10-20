@@ -1,64 +1,24 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
-
-const posts = [
-  {
-    slug: "sheben-fraktsiya",
-    title: "Как выбрать фракцию щебня для фундамента",
-    excerpt: "Разбираемся, какой щебень нужен для ленточного, плитного и свайного фундамента. Почему нельзя брать первый попавшийся.",
-    date: "15 ноября 2024",
-    tag: "Материалы",
-    readTime: "5 мин",
-  },
-  {
-    slug: "musor-posle-remonta",
-    title: "Вывоз мусора после ремонта: что важно знать",
-    excerpt: "Какую машину выбрать, как заказать грузчиков или экскаватор, как не переплатить. Полное руководство для владельца квартиры.",
-    date: "2 ноября 2024",
-    tag: "Советы",
-    readTime: "7 мин",
-  },
-  {
-    slug: "arenda-ekskavatora",
-    title: "Аренда экскаватора: на что обратить внимание",
-    excerpt: "Гусеничный или колёсный? Какой ковш нужен для вашей задачи? Как не переплатить при аренде спецтехники.",
-    date: "20 октября 2024",
-    tag: "Спецтехника",
-    readTime: "6 мин",
-  },
-  {
-    slug: "pesok-dlya-stroitelstva",
-    title: "Речной vs карьерный песок: в чём разница",
-    excerpt: "Сравниваем два вида песка по составу, цене и применению. Когда стоит переплатить за речной?",
-    date: "10 октября 2024",
-    tag: "Материалы",
-    readTime: "4 мин",
-  },
-  {
-    slug: "plodorodniy-grunt",
-    title: "Чернозём: сколько нужно для участка",
-    excerpt: "Формула расчёта объёма чернозёма для газона, огорода и клумб. Таблица норм слоя для разных культур.",
-    date: "1 октября 2024",
-    tag: "Советы",
-    readTime: "3 мин",
-  },
-  {
-    slug: "buldozer-ili-ekskavatora",
-    title: "Мини-экскаватор или экскаватор-погрузчик: что выбрать",
-    excerpt: "Ошибка в выборе техники стоит денег и времени. Рассказываем, когда что нужно.",
-    date: "18 сентября 2024",
-    tag: "Спецтехника",
-    readTime: "5 мин",
-  },
-];
-
-const tags = ["Все", "Материалы", "Спецтехника", "Советы"];
+import { useSeo } from "@/hooks/useSeo";
+import { blogPosts, blogTags } from "@/data/blog";
 
 export default function Blog() {
+  const [activeTag, setActiveTag] = useState<(typeof blogTags)[number]>("Все");
+
+  useSeo({
+    title: "Блог РостовТехРезерв — советы по материалам, спецтехнике и вывозу мусора",
+    description:
+      "Полезные статьи о щебне, песке, отсеве, глине, аренде спецтехники и вывозе мусора в Ростове-на-Дону: как выбрать, как рассчитать и как сэкономить.",
+    keywords: "блог о строительстве, как выбрать щебень, аренда спецтехники советы, вывоз мусора советы, ростов-на-дону",
+  });
+
+  const visible = activeTag === "Все" ? blogPosts : blogPosts.filter((p) => p.tag === activeTag);
+
   return (
     <Layout>
-      {/* Hero */}
       <section className="bg-brand-black py-24 relative">
         <div className="absolute top-0 left-0 right-0 h-1 bg-brand-orange" />
         <div className="max-w-7xl mx-auto px-6">
@@ -70,20 +30,19 @@ export default function Blog() {
           <h1 className="font-oswald text-5xl md:text-7xl text-white uppercase leading-none mb-4">
             БЛОГ И<br /><span className="text-brand-orange">СТАТЬИ</span>
           </h1>
-          <p className="text-brand-gray-light text-xl max-w-xl">Полезные материалы о строительстве, технике и работе с грунтом</p>
+          <p className="text-brand-gray-light text-xl max-w-xl">Полезные материалы о строительстве, технике и вывозе мусора</p>
         </div>
       </section>
 
-      {/* Blog grid */}
       <section className="py-24 bg-brand-cream">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Tags */}
           <div className="flex flex-wrap gap-3 mb-12">
-            {tags.map((tag) => (
+            {blogTags.map((tag) => (
               <button
                 key={tag}
+                onClick={() => setActiveTag(tag)}
                 className={`px-5 py-2 font-oswald text-sm tracking-widest uppercase transition-all border ${
-                  tag === "Все"
+                  tag === activeTag
                     ? "bg-brand-orange text-white border-brand-orange"
                     : "border-brand-black/20 text-brand-black hover:border-brand-orange hover:text-brand-orange bg-white"
                 }`}
@@ -93,21 +52,18 @@ export default function Blog() {
             ))}
           </div>
 
-          {/* Articles */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post, i) => (
+            {visible.map((post) => (
               <Link
                 key={post.slug}
                 to={`/blog/${post.slug}`}
-                className={`group bg-white border border-transparent hover:border-brand-orange hover:shadow-xl transition-all overflow-hidden ${
-                  i === 0 ? "md:col-span-2 lg:col-span-1" : ""
-                }`}
+                className="group bg-white border border-transparent hover:border-brand-orange hover:shadow-xl transition-all overflow-hidden flex flex-col"
               >
                 <div className="h-2 bg-brand-orange" />
-                <div className="p-8">
+                <div className="p-8 flex flex-col flex-1">
                   <div className="flex items-center justify-between mb-5">
                     <span className="bg-brand-orange text-white font-oswald text-xs tracking-widest px-3 py-1 uppercase">{post.tag}</span>
-                    <span className="text-brand-gray-light text-xs flex items-center gap-1">
+                    <span className="text-brand-gray-mid text-xs flex items-center gap-1">
                       <Icon name="Clock" size={12} />
                       {post.readTime}
                     </span>
@@ -115,9 +71,9 @@ export default function Blog() {
                   <h3 className="font-oswald text-xl text-brand-black uppercase leading-tight mb-4 group-hover:text-brand-orange transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-brand-gray-mid text-sm leading-relaxed mb-6">{post.excerpt}</p>
+                  <p className="text-brand-gray-mid text-sm leading-relaxed mb-6 flex-1">{post.excerpt}</p>
                   <div className="flex items-center justify-between pt-4 border-t border-brand-black/10">
-                    <span className="text-brand-gray-light text-xs flex items-center gap-1">
+                    <span className="text-brand-gray-mid text-xs flex items-center gap-1">
                       <Icon name="Calendar" size={12} />
                       {post.date}
                     </span>
@@ -132,11 +88,10 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 bg-brand-black">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="font-oswald text-3xl md:text-5xl text-white uppercase mb-4">Остались вопросы?</h2>
-          <p className="text-brand-gray-light mb-8">Наши специалисты ответят на любой вопрос по строительным материалам и технике</p>
+          <p className="text-brand-gray-light mb-8">Наши специалисты ответят на любой вопрос по материалам, технике и вывозу мусора</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/faq" className="inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-8 py-4 font-oswald text-lg tracking-wider uppercase hover:bg-brand-orange-dark transition-colors">
               <Icon name="HelpCircle" size={20} />

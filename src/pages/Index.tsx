@@ -58,19 +58,19 @@ const reviews = [
 const blogPosts = [
   {
     title: "Как выбрать фракцию щебня для фундамента",
-    date: "15 ноября 2024",
+    date: "15 октября 2026",
     tag: "Материалы",
     href: "/blog/sheben-fraktsiya",
   },
   {
     title: "Вывоз мусора после ремонта: что важно знать",
-    date: "2 ноября 2024",
-    tag: "Советы",
+    date: "2 июля 2026",
+    tag: "Вывоз мусора",
     href: "/blog/musor-posle-remonta",
   },
   {
     title: "Аренда экскаватора: на что обратить внимание",
-    date: "20 октября 2024",
+    date: "13 августа 2026",
     tag: "Спецтехника",
     href: "/blog/arenda-ekskavatora",
   },
