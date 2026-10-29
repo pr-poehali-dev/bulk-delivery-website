@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
 import { garbageVehicleItems, garbageWasteItems } from "@/data/garbageItems";
 import type { LandingItem } from "@/data/types";
-import { useSeo } from "@/hooks/useSeo";
 
 const steps = [
   { n: "1", title: "Заявка", desc: "Позвоните или оставьте заявку онлайн" },
@@ -19,13 +18,6 @@ const groups: { title: string; items: LandingItem[] }[] = [
 ];
 
 export default function Garbage() {
-  useSeo({
-    title: "Вывоз мусора в Ростове-на-Дону — Газель, ЗИЛ, КамАЗ с грузчиками и экскаватором | РостовТехРезерв",
-    description:
-      "Вывоз мусора в Ростове-на-Дону, Аксае и Батайске. Газели, ЗИЛы, КамАЗы 10 и 20 куб.м, погрузка грузчиками или экскаватором. КамАЗ с экскаватором — от 16 000 ₽. Заявки до 17:00.",
-    keywords: "вывоз мусора ростов-на-дону, вывоз мусора камаз, вывоз мусора газель, вывоз строительного мусора, камаз с экскаватором",
-  });
-
   return (
     <Layout>
       <section className="bg-brand-black py-24 relative overflow-hidden">

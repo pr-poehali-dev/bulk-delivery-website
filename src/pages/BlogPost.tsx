@@ -1,9 +1,7 @@
-import { useMemo } from "react";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Link, useParams, Navigate } from "@/lib/router-compat";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
 import QuickLeadForm from "@/components/QuickLeadForm";
-import { useSeo, useJsonLd } from "@/hooks/useSeo";
 import { blogPosts, getPostBySlug } from "@/data/blog";
 import type { BlogBlock } from "@/data/blog";
 
@@ -73,41 +71,6 @@ function renderBlock(b: BlogBlock, i: number) {
 export default function BlogPost() {
   const { slug } = useParams();
   const post = slug ? getPostBySlug(slug) : undefined;
-
-  useSeo(
-    post
-      ? { title: `${post.metaTitle} | РостовТехРезерв`, description: post.metaDescription, keywords: post.keywords }
-      : { title: "Статья не найдена", description: "" }
-  );
-
-  const jsonLd = useMemo(() => {
-    if (!post) return {};
-    return {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Article",
-          headline: post.title,
-          description: post.metaDescription,
-          datePublished: post.dateISO,
-          dateModified: post.dateISO,
-          inLanguage: "ru",
-          author: { "@type": "Organization", name: "РостовТехРезерв" },
-          publisher: { "@type": "Organization", name: "РостовТехРезерв" },
-        },
-        {
-          "@type": "FAQPage",
-          mainEntity: post.faq.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        },
-      ],
-    };
-  }, [post]);
-
-  useJsonLd(jsonLd);
 
   if (!post) return <Navigate to="/blog" replace />;
 

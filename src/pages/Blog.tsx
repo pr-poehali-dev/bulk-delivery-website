@@ -1,19 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
-import { useSeo } from "@/hooks/useSeo";
 import { blogPosts, blogTags } from "@/data/blog";
 
 export default function Blog() {
   const [activeTag, setActiveTag] = useState<(typeof blogTags)[number]>("Все");
-
-  useSeo({
-    title: "Блог РостовТехРезерв — советы по материалам, спецтехнике и вывозу мусора",
-    description:
-      "Полезные статьи о щебне, песке, отсеве, глине, аренде спецтехники и вывозе мусора в Ростове-на-Дону: как выбрать, как рассчитать и как сэкономить.",
-    keywords: "блог о строительстве, как выбрать щебень, аренда спецтехники советы, вывоз мусора советы, ростов-на-дону",
-  });
 
   const visible = activeTag === "Все" ? blogPosts : blogPosts.filter((p) => p.tag === activeTag);
 

@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
 import { materials } from "@/data/materials";
-import { useSeo } from "@/hooks/useSeo";
 
 const howWorks = [
   { step: "01", title: "Оставьте заявку", desc: "Позвоните или заполните форму на сайте" },
@@ -12,13 +11,6 @@ const howWorks = [
 ];
 
 export default function Delivery() {
-  useSeo({
-    title: "Доставка сыпучих материалов в Ростове-на-Дону — щебень, песок, отсев | РостовТехРезерв",
-    description:
-      "Доставка щебня, песка, отсева, глины, ФАЛ, торфа, керамзита и других сыпучих материалов в Ростове-на-Дону, Аксае и Батайске. Заявки до 17:00 — доставка в день обращения.",
-    keywords: "доставка сыпучих материалов ростов-на-дону, купить щебень песок отсев глину",
-  });
-
   return (
     <Layout>
       {/* Hero */}

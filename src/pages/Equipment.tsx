@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
 import { equipmentItems } from "@/data/equipmentItems";
-import { useSeo } from "@/hooks/useSeo";
 
 const conditions = [
   { icon: "Clock", title: "Минимальный заказ", desc: "4 часа (с учётом подачи техники)" },
@@ -14,13 +13,6 @@ const conditions = [
 ];
 
 export default function Equipment() {
-  useSeo({
-    title: "Аренда спецтехники в Ростове-на-Дону — экскаваторы, краны, самосвалы | РостовТехРезерв",
-    description:
-      "Аренда спецтехники с оператором в Ростове-на-Дону, Аксае и Батайске. Экскаваторы, экскаватор-погрузчик, мини-экскаватор, автовышка, манипулятор, гидромолот, самосвалы. Заявки до 17:00 — выезд в день обращения.",
-    keywords: "аренда спецтехники ростов-на-дону, экскаватор кран самосвал аренда",
-  });
-
   return (
     <Layout>
       {/* Hero */}

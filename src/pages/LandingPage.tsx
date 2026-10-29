@@ -1,8 +1,7 @@
-import { useMemo, useState } from "react";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useParams, Navigate } from "@/lib/router-compat";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
-import { useSeo, useJsonLd } from "@/hooks/useSeo";
 import type { LandingGroup } from "@/data/types";
 
 import { sendLead } from "@/lib/leads";
@@ -16,41 +15,6 @@ export default function LandingPage({ group }: { group: LandingGroup }) {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  useSeo(
-    item
-      ? { title: item.metaTitle, description: item.metaDescription, keywords: item.keywords }
-      : { title: "Страница не найдена", description: "" }
-  );
-
-  const jsonLd = useMemo(() => {
-    if (!item) return {};
-    const numericPrice = item.price.replace(/\D/g, "");
-    const faqLd = {
-      "@type": "FAQPage",
-      mainEntity: item.faq.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    };
-    const productLd: Record<string, unknown> = {
-      "@type": "Product",
-      name: item.name,
-      description: item.heroDesc,
-    };
-    if (numericPrice) {
-      productLd.offers = {
-        "@type": "Offer",
-        priceCurrency: "RUB",
-        price: numericPrice,
-        availability: "https://schema.org/InStock",
-      };
-    }
-    return { "@context": "https://schema.org", "@graph": [productLd, faqLd] };
-  }, [item]);
-
-  useJsonLd(jsonLd);
 
   if (!item) return <Navigate to={group.parentPath} replace />;
 
