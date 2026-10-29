@@ -61,7 +61,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Icon name="Truck" size={22} className="text-white" />
             </div>
             <div>
-              <div className="text-white font-oswald text-xl tracking-widest uppercase leading-tight">РостовТехРезерв</div>
+              <div className="text-white font-oswald text-xl tracking-widest uppercase leading-tight">геракл</div>
               <div className="text-brand-gray-light text-[10px] tracking-[0.2em] uppercase">Строительная логистика</div>
             </div>
           </Link>
